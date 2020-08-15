@@ -20,3 +20,26 @@
 .w3-hover-theme:hover {color:#fff !important; background-color:#003c07 !important}
 .w3-hover-text-theme:hover {color:#003c07 !important}
 .w3-hover-border-theme:hover {border-color:#003c07 !important}
+
+.w3-theme-l5-yellow {color:#000 !important; background-color:#fffdf0 !important}
+.w3-theme-l4-yellow {color:#000 !important; background-color:#fffacc !important}
+.w3-theme-l3-yellow {color:#000 !important; background-color:#fff599 !important}
+.w3-theme-l2-yellow {color:#000 !important; background-color:#fff066 !important}
+.w3-theme-l1-yellow {color:#000 !important; background-color:#ffeb33 !important}
+.w3-theme-d1-yellow {color:#000 !important; background-color:#e6cf00 !important}
+.w3-theme-d2-yellow {color:#000 !important; background-color:#ccb800 !important}
+.w3-theme-d3-yellow {color:#fff !important; background-color:#b3a100 !important}
+.w3-theme-d4-yellow {color:#fff !important; background-color:#998a00 !important}
+.w3-theme-d5-yellow {color:#fff !important; background-color:#807300 !important}
+
+.w3-theme-light-yellow {color:#000 !important; background-color:#fffdf0 !important}
+.w3-theme-dark-yellow {color:#fff !important; background-color:#807300 !important}
+.w3-theme-action-yellow {color:#fff !important; background-color:#807300 !important}
+
+.w3-theme-yellow {color:#000 !important; background-color:#ffe600 !important}
+.w3-text-theme-yellow {color:#ffe600 !important}
+.w3-border-theme-yellow {border-color:#ffe600 !important}
+
+.w3-hover-theme-yellow:hover {color:#000 !important; background-color:#ffe600 !important}
+.w3-hover-text-theme-yellow:hover {color:#ffe600 !important}
+.w3-hover-border-theme-yellow:hover {border-color:#ffe600 !important}

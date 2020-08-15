@@ -7,6 +7,9 @@ const path = require('path');
 
 const home = require('./api/routes/home.js');
 
+app.get('/', (request, result) => {
+    result.redirect('/home');
+});
 home.openRoute(app, path);
 
 app.use(express.static(path.join(__dirname, process.env.STATIC || 'public/')));

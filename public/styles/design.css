@@ -1,0 +1,29 @@
+
+#title {
+    font-weight: 700;
+    font-family: 'Baloo Tamma 2', cursive;
+}
+#search {
+    position: absolute;
+    left: 32%;
+    width: 28%;
+}
+#searchColumn {
+    position: relative;
+    width: 10%;
+    left: 65%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+#searchBtn {
+    position: relative;
+    float: right;
+    right: 35%;
+}
+#searchIcon {
+    height: 24px;
+}
+#upload {
+    font-weight: 650;
+}
