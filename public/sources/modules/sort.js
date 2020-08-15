@@ -1,21 +1,6 @@
 
 "use strict";
 
-/**
- * Creates the custom URL required to access to sort specified table.
- * 
- * @returns {[string, string]} URL to access data to be sorted at and current path user is on
- */
-const sortURL = () => {
-    const sortID = this.id;
-    const sortBy = sortID.substring(0, sortID.length - 4);
-    const currentAddress = `${window.location.protocol}//${window.location.host}`;
-    const path = window.location.pathname;
-    let url = `${currentAddress}${path}_desc?${sortBy}`;
-    if (path === `/marking_centre`) url = `${currentAddress}/active_job_desc?${sortBy}`;
-    return [url, path];
-}
-
 const sortTable = () => {
     const tableToSort = document.getElementById("table");
     let column = [];

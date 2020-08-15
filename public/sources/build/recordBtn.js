@@ -18,6 +18,7 @@ const adjustBtn = (btn, btnBottomMargin, btnRightMargin) => {
  * Calculates the necessary position of said button for future correct placement.
  * 
  * @param {object} btn - Button from DOM, referring to button that will be positioned
+ * @returns {number[]} Value reflecting buttons displacement from top of screen and left to screen
  */
 const calcBtn = btn => {
     let btnBottomMargin = document.getElementById("footer").clientHeight;

@@ -1,4 +1,10 @@
 
+/**
+ * Opens route at /home to send 'index.html' file to user.
+ * 
+ * @param {object} app - Express middleware needed to open routes for user to access
+ * @param {object} path - Path middleware needed to access static files in other directories
+ */
 exports.openRoute = (app, path) => {
     app.get('/home', (request, result) => {
         console.log("[SUCCESS][ACCESS] User has accessed /home route");
