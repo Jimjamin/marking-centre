@@ -8,7 +8,8 @@
  * @param {number} btnBottomMargin - Calculated height the button needs to be from the top of the screen (pending adjustment)
  * @param {number} btnRightMargin - Calculated width the button needs to be from the left of the screen (pending adjustment)
  */
-adjustBtn = (btn, btnBottomMargin, btnRightMargin) => {
+const adjustBtn = (btn, btnBottomMargin, btnRightMargin) => {
+    btn.style.position = "sticky";
     btn.style.bottom = `calc(3% + ${btnBottomMargin}px)`;
     btn.style.left = `calc(97% - ${btnRightMargin}px)`;
 }
@@ -18,8 +19,8 @@ adjustBtn = (btn, btnBottomMargin, btnRightMargin) => {
  * 
  * @param {object} btn - Button from DOM, referring to button that will be positioned
  */
-calcBtn = btn => {
-    let btnBottomMargin = document.getElementById("closing").clientHeight;
+const calcBtn = btn => {
+    let btnBottomMargin = document.getElementById("footer").clientHeight;
     const appHeight = document.getElementById("app").clientHeight;
     if (window.innerHeight > appHeight) btnBottomMargin += window.innerHeight - appHeight;
     const btnRightMargin = btn.clientWidth / 2;
@@ -29,16 +30,10 @@ calcBtn = btn => {
 /**
  * Calls other functions necessary to correctly position upload and comment buttons.
  */
-positionBtn = () => {
+const positionBtn = () => {
     let uploadBtn = document.getElementById("upload");
-    [uploadBtnBottomMargin, uploadBtnRightMargin] = script.calcBtn(uploadBtn);
-    script.adjustBtn(uploadBtn, uploadBtnBottomMargin, uploadBtnRightMargin);
-
-    if (window.location.pathname === "/marking_centre") {
-        let commentBtn = document.getElementById("upload");
-        [commentBtnBottomMargin, commentBtnRightMargin] = script.calcBtn(commentBtn);
-        script.adjustBtn(commentBtn, commentBtnBottomMargin, commentBtnRightMargin);
-    }
+    let [uploadBtnBottomMargin, uploadBtnRightMargin] = calcBtn(uploadBtn);
+    adjustBtn(uploadBtn, uploadBtnBottomMargin, uploadBtnRightMargin);
 }
 
 export { positionBtn }

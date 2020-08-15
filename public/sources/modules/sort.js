@@ -21,9 +21,6 @@ const sortTable = () => {
     let column = [];
     let index = this.id;
     for (let row in tableToSort.rows) column.push(tableToSort.rows[row].cells[index].innerHTML);
-    for () {
-        
-    }
 }
 
 const createSortBtn = item => {
@@ -36,3 +33,5 @@ const createSortBtn = item => {
 }
 
 const appendSortBtn = (row, cell) => row.cells[cell].append(createSortBtn(item));
+
+export { appendSortBtn }

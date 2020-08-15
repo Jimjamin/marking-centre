@@ -14,8 +14,8 @@ const welcomeUser = username => {
 }
 
 /**
-     * Hides links that aren't to be seen without prior authentication
-     */
+ * Hides links that aren't to be seen without prior authentication
+ */
 const hideLinks = () => {
     document.getElementById("l_jobs").style.display = "none";
     document.getElementById("l_info").style.display = "none";
@@ -130,4 +130,4 @@ const userLogin = () => {
         .catch(err => alert(err.message))
 }
 
-export { authenticateUser, userLogin }
+export { authenticateUser, userLogin };

@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/Jimjamin/distributed-marking-es6/issues"
   },
-  "homepage": "https://github.com/Jimjamin/distributed-marking-es6#readme"
+  "homepage": "https://github.com/Jimjamin/distributed-marking-es6#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
