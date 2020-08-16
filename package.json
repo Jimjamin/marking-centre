@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/Jimjamin/distributed-marking-es6#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "path": "^0.12.7",
-    "dotenv": "^8.2.0"
+    "formidable": "^2.0.0-canary.20200504.1",
+    "path": "^0.12.7"
   }
 }

@@ -1,0 +1,14 @@
+
+#body {
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    top: 10%;
+    left: 30%;
+}
+#bodyForm {
+    padding: 16px;
+}
+#formBtn {
+    margin-top: 16px;
+}

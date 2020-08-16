@@ -10,8 +10,8 @@
  */
 const adjustBtn = (btn, btnBottomMargin, btnRightMargin) => {
     btn.style.position = "sticky";
-    btn.style.bottom = `calc(3% + ${btnBottomMargin}px)`;
-    btn.style.left = `calc(97% - ${btnRightMargin}px)`;
+    btn.style.bottom = `calc(1.5% + ${btnBottomMargin}px)`;
+    btn.style.left = `calc(96.2% - ${btnRightMargin}px)`;
 }
 
 /**

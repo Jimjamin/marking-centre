@@ -19,21 +19,46 @@
                 <div class="w3-center">
                     <h1 id="title">Marking Centre Online</h1>
                 </div>
-                <div>
-                    <input id="search" class="w3-input w3-border w3-round-xlarge" type="text" placeholder="Search through list of jobs...">
-                    <select id="searchColumn" class="w3-select w3-border-0">
-                        <option value="selectAll" selected>Select All</option>
-                    </select>
-                    <button id="searchBtn" class="w3-button w3-round-xlarge w3-border-0"><img id="searchIcon" src="../images/searchBlk.png"></button>
+                <input id="search" class="w3-input w3-border w3-border-black w3-round-xlarge" type="text" placeholder="Search through list of jobs...">
+                <select id="searchColumn" class="w3-select w3-border-0">
+                    <option value="selectAll" selected>Search All</option>
+                </select>
+                <button id="searchBtn" class="w3-button w3-round-xlarge w3-border-0"><img id="searchIcon" src="../images/searchBlk.png"></button>
+                <button id="profileBtn" class="w3-button w3-circle w3-border w3-border-black w3-dropdown-click" onclick="document.getElementById('profileDesc').style.display='block'"><img id="profileIcon" src="../images/profile.png"></button>
+                <div id="profileDesc" class="w3-modal">
+                    <div class="w3-modal-content w3-animate-zoom">
+                        <div class="w3-container">
+                            <span onclick="document.getElementById('profileDesc').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                            <h3>Profile</h3>
+                        </div>
+                        <div>
+                            <button class="w3-button">Logoff</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <br>
             <div id="body" class="w3-container">
                 <table id="table"></table>
-                <!--<button id="upload" class="w3-button w3-theme w3-xlarge">+</button>-->
+                <br>
+                <button id="upload" class="w3-button w3-circle w3-xlarge w3-border w3-border-black" onclick="document.getElementById('uploadForm').style.display='block'">+</button>
+                <div id="uploadForm" class="w3-modal">
+                    <div class="w3-modal-content w3-animate-zoom">
+                        <div class="w3-container">
+                            <span onclick="document.getElementById('uploadForm').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                            <h3>Create new jobs</h3>
+                        </div>
+                        <div>
+                            <button class="w3-button">Upload</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="footer" class="w3-container"></div>
 
-            <script type="module" type="text/javaScript" src="../sources/script.js"></script>
+            <script type="module" src="../sources/script.js"></script>
             <noscript>Unfortunately your browser does not appear to support or be running JavaScript. Try running this
                 application on an updated version of Google Chrome or Firefox.</noscript>
         </div>
