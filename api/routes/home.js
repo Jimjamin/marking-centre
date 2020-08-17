@@ -8,11 +8,11 @@
  * @param {object} path - Path middleware needed to access static files in other directories
  */
 exports.openRoute = (app, path) => {
-    app.get('/home', (request, result) => {
-        console.log("[SUCCESS][ACCESS][GET] User has accessed /home route");
+    app.get('/home', (request, result, next) => {
         result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
-            if (error) console.log("[FAILURE][ACCESS][RESOURCE] User has not received 'index.html' on /home route")
+            if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
+            else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
         });
-        console.log("[SUCCESS][REOURCE] User has received 'index.html'");
+        //next();
     });
 }

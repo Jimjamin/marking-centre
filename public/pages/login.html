@@ -17,15 +17,18 @@
         <div id="app">
             <div id="header"></div>
             <div id="body" class="w3-container">
-                <div id="bodyForm" class="w3-center w3-border w3-border-black">
-                    <img src="../images/logo.png">
-                    <form id="logonForm" action="/login" method="POST" enctype="multipart/form-data">
-                        <label>Email Address</label>
-                        <input id="email" type="text" class="w3-input w3-border w3-border-black" placeholder="jsmit1@eq.edu.au" required autofocus autocomplete="on">
-                        <label>Password</label>
-                        <input id="password" type="password" class="w3-input w3-border w3-border-black" required autocomplete="on">
+                <div id="bodyForm" class="w3-center w3-border w3-border-black w3-round-xlarge">
+                    <img height="180px" src="../images/logo.png">
+                    <h1>Login Portal</h1>
+                    <form id="logonForm" method="POST" action="/login" enctype="multipart/form-data">
+                        <label class="w3-left">Email Address</label>
+                        <input id="email" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au" required autofocus autocomplete="off">
+                        <br>
+                        <label class="w3-left">Password</label>
+                        <input id="password" type="password" class="w3-input w3-border w3-border-black w3-round-xlarge" required autocomplete="off">
                         <button id="formBtn" type="submit" class="w3-button w3-border w3-border-black w3-round-xlarge">Logon</button>
                     </form>
+                    <button id="supportBtn" onclick="location.href='mailto:webmaster25228@gmail.com'" class="w3-button w3-border w3-border-black w3-round-xlarge">Support</button>
                 </div>
             </div>
         </div>

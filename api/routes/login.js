@@ -1,6 +1,8 @@
 
 "use strict";
 
+const { request } = require("express");
+
 /**
  * Opens route at /login to send 'login.html' file to user.
  *
@@ -9,11 +11,11 @@
  */
 exports.openRoute = (app, path) => {
     app.get('/login', (request, result) => {
-        console.log("[SUCCESS][ACCESS][GET] User has accessed /login route");
+        request.session.destroy(error => { if (error) console.log("[SUCCESS][LOGON] User has logged off") });
         result.sendFile(path.join(__dirname, '../../public/pages/', 'login.html'), error => {
-            if (error) console.log("[FAILURE][ACCESS][RESOURCE] User has not received 'login.html' on /login route")
+            if (error) console.log("[FAILURE][RESOURCE] User has not received 'login.html'");
+            else console.log("[SUCCESS][RESOURCE] User has received 'login.html'");
         });
-        console.log("[SUCCESS][REOURCE] User has received 'login.html'");
     });
 }
 
@@ -25,13 +27,14 @@ exports.openRoute = (app, path) => {
  */
 exports.logonUser = (app, formidable) => {
     app.post('/login', (request, result) => {
-        console.log("[SUCCESS][ACCESS][POST] User has accessed /login route");
         const loginForm = formidable();
-        loginForm.parse(request, (error, fields, files) => {
+        loginForm.parse(request, (error, fields) => {
             if (error) console.log("[FAILURE][LOGON] User has been unable to logon due to server error that has not been caught"); 
             else {
+                request.session.userLoggedIn = true;
+                request.session.email = fields.email;
                 result.redirect('/home');
-                console.log("[SUCCESS][LOGON] User has logged on and has been redirected to /home");
+                console.log("[SUCCESS][LOGON] User has logged on");
             }
         });
     });

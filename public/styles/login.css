@@ -2,13 +2,14 @@
 #body {
     position: absolute;
     width: 40%;
-    height: 80%;
-    top: 10%;
+    max-height: 80%;
+    top: 8%;
     left: 30%;
 }
 #bodyForm {
     padding: 16px;
 }
-#formBtn {
+#formBtn, #supportBtn {
     margin-top: 16px;
+    width: 20%;
 }

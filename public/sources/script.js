@@ -1,7 +1,7 @@
 
 "use strict";
 
-import { validateLogin } from './modules/login.js';
+import { validateLogin, logoffBtn } from './modules/login.js';
 //import { createTable } from './modules/table.js';
 import { positionBtn } from './build/recordBtn.js';
 //import { appendSortBtn } from './modules/sort.js';
@@ -13,12 +13,13 @@ window.onload = function() {
         buildList();
         positionBtn();
         //createTable();
+        document.getElementById("logoffBtn").onclick = logoffBtn;
     } else document.getElementById("logonForm").onsubmit = validateLogin;
 }
 
-window.onclick = event => {
+window.onclick = formToClose => {
     const profileDesc = document.getElementById("profileDesc");
     const uploadForm = document.getElementById("uploadForm");
-    if (event.target === profileDesc) profileDesc.style.display = "none";
-    if (event.target === uploadForm) uploadForm.style.display = "none";
+    if (formToClose.target === profileDesc) profileDesc.style.display = "none";
+    if (formToClose.target === uploadForm) uploadForm.style.display = "none";
 }
