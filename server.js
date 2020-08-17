@@ -12,7 +12,7 @@ const login = require('./api/routes/login.js');
 
 app.use(express.static(path.join(__dirname, process.env.STATIC || 'public/')));
 app.use(session({
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || 'equity in education',
     resave: false,
     saveUninitialized: false
 }));
