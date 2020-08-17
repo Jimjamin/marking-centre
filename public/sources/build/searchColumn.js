@@ -1,6 +1,9 @@
 
 "use strict";
 
+/**
+ * Builds list of search options to allow user to choose column to search through.
+ */
 const buildList = () => {
     let listToAppend = document.getElementById("searchColumn");
     const listOptions = ["Student ID", "Student Name", "Exam Name", "Teacher ID", "Teacher Name",

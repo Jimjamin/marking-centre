@@ -1,8 +1,6 @@
 
 "use strict";
 
-const { request } = require("express");
-
 /**
  * Opens route at /login to send 'login.html' file to user.
  *

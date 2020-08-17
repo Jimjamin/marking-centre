@@ -34,6 +34,11 @@
 #profileIcon {
     height: 24px;
 }
+#logoffBtn, #supportBtn, #uploadBtn {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 20%;
+}
 #upload {
     font-weight: 650;
     font-size: 24px;

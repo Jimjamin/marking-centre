@@ -49,7 +49,6 @@ const createTableBody = (tableItems, item) => {
  * @returns {boolean} If any duplicates were found
  */
 const checkForDuplicates = (tableItems, item) => {
-    let match = false;
     if (item !== 0) {
         for (let itemCheck = 0; itemCheck < item; itemCheck++) {
             let test = tableItems[itemCheck];
@@ -59,11 +58,10 @@ const checkForDuplicates = (tableItems, item) => {
             const subjectID = test.subject_id === currentItem.subject_id;
             const questionID = test.question_id === currentItem.question_id;
             const teacherID = test.teacher_id === currentItem.teacher_id;
-            if (studentID && examID && subjectID && questionID && teacherID) match = true;
-            if (match) return match;
+            if (studentID && examID && subjectID && questionID && teacherID) return true;
         }
     }
-    return match;
+    return false;
 }
 
 /**
