@@ -15,7 +15,9 @@ app.use(express.static(path.join(__dirname, process.env.STATIC || 'public/')));
 app.use(session({
     secret: process.env.SECRET || 'equity in education',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    // Session is saved for up to two hours before user is logged out
+    cookie: { maxAge: 1000 * 60 * 60 * 2 }
 }));
 
 login.openRoute(app, path);

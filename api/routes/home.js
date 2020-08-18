@@ -1,7 +1,7 @@
 
 "use strict";
 
-const search = require('./search.js');
+const search = require('./../middleware/search.js');
 
 /**
  * Opens route at /home to send 'index.html' file to user and makes search queries.
@@ -11,15 +11,14 @@ const search = require('./search.js');
  * @param {object} url - URL middleware to parse search queries
  */
 exports.openRoute = (app, path, url) => {
-    app.get('/home', (request, result, next) => {
-        let querySearch = "";
-        if (request.url.includes('?')) {
-            querySearch = search.querySearch(request, url);
-            console.log("[SUCCESS][SEARCH] User has made a search");
+    app.get('/home', (request, result) => {
+        let [querySearch, queryColumn] = search.querySearch(request, url);
+        if (querySearch) search.executeSearch(result, querySearch, queryColumn);
+        if (!querySearch) {
+            result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
+                if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
+                else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
+            });
         }
-        result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
-            if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
-            else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
-        });
     });
 }

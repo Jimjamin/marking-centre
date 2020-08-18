@@ -18,11 +18,13 @@ const updateSearch = () => {
  */
 const makeSearch = () => {
     const url = updateSearch();
-    if(url !== window.location.href) {
+    if (window.location.href !== url) {
         fetch(url)
-            .then(() => document.getElementById("test").innerHTML = "Success!")
+            .then(response => response.json())
+            .then(response => { if (response.searchData) document.getElementById("test").innerHTML = response.searchData })
             .catch(error => alert(error.message))
     }
+    else window.location.reload();
 }
 
 export { makeSearch }

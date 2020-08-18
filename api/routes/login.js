@@ -9,7 +9,8 @@
  */
 exports.openRoute = (app, path) => {
     app.get('/login', (request, result) => {
-        request.session.destroy(error => { if (error) console.log("[SUCCESS][LOGON] User has logged off") });
+        if (request.session.userLoggedIn) console.log("[SUCCESS][LOGON] User has logged off");
+        request.session.destroy(error => { if (error) console.log("[FAILURE][LOGON] User has not been able to log off") });
         result.sendFile(path.join(__dirname, '../../public/pages/', 'login.html'), error => {
             if (error) console.log("[FAILURE][RESOURCE] User has not received 'login.html'");
             else console.log("[SUCCESS][RESOURCE] User has received 'login.html'");
