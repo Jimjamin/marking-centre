@@ -1,0 +1,13 @@
+
+#body {
+    position: absolute;
+    width: 80%;
+    max-height: 80%;
+    top: 8%;
+    left: 8%;
+    padding: 16px;
+}
+#confirmUploadBtn, #cancelUploadBtn {
+    margin-top: 16px;
+    width: 20%;
+}

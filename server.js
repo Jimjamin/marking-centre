@@ -7,9 +7,12 @@ const session = require('express-session');
 const path = require('path');
 const formidable = require('formidable');
 const url = require('url');
+const fs = require('fs');
+const csv = require('csv-parser');
 
 const home = require('./api/routes/home.js');
 const login = require('./api/routes/login.js');
+const upload = require('./api/routes/upload.js');
 
 app.use(express.static(path.join(__dirname, process.env.STATIC || 'public/')));
 app.use(session({
@@ -26,5 +29,8 @@ app.use((request, result, next) => {
 });
 home.openRoute(app, path, url);
 app.get('/', (request, result) => result.redirect('/home'));
+upload.loadUserFile(app, formidable, fs, csv);
+upload.displayUserFile(app, path);
+upload.loadCurrentSession(app);
 
 app.listen(process.env.PORT || 3000, () => console.log("[SUCCESS][SERVER] Server is listening on port 3000"));

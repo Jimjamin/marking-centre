@@ -31,7 +31,6 @@ exports.logonUser = (app, formidable) => {
             if (error) console.log("[FAILURE][LOGON] User has been unable to logon due to server error that has not been caught"); 
             else {
                 request.session.userLoggedIn = true;
-                request.session.email = fields.email;
                 result.redirect('/home');
                 console.log("[SUCCESS][LOGON] User has logged on");
             }

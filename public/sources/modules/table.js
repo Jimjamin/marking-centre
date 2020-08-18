@@ -89,7 +89,7 @@ const buildTable = res => {
  * Makes call to server for table data, and upon successful fetch will build table from said data.
  */
 const createTable = () => {
-    let url = "http://localhost:3000/exams"
+    let url = `${window.location.protocol}//${window.location.host}/exams`;
     fetch(url)
         .then((res) => res.json())
         .then((res) => buildTable(res))

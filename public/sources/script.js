@@ -9,6 +9,7 @@ import { buildList } from './build/searchColumn.js';
 import { setupProfile } from './build/profile.js';
 import { makeSearch } from './modules/search.js';
 import { uploadButtonEventListener } from './build/uploadForm.js'
+import { uploadUser } from './modules/upload.js';
 
 window.onload = function() {
     const path = window.location.pathname;
@@ -19,6 +20,7 @@ window.onload = function() {
         //createTable();
         setupProfile();
         document.getElementById("logoffBtn").onclick = logoffBtn;
+        document.getElementById("uploadUserBtn").onclick = uploadUser;
         uploadButtonEventListener();
     } else { 
         localStorage.removeItem("userEmail");
