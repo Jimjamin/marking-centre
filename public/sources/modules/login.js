@@ -16,8 +16,9 @@ const validateLogin = () => {
         alert("You have not entered in a valid password of suitable length");
         return false;
     }
-    sessionStorage.setItem("userEmail", email);
-    setTimeout(() => alert("Your login request has timed out from possible server error"), 5000)
+    localStorage.setItem("userEmail", email);
+    // After ten seconds alert the user to a failed login request
+    setTimeout(() => alert("Your login request has timed out from possible server error"), 10000)
     return true;
 }
 

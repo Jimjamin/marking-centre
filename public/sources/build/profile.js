@@ -5,7 +5,7 @@
  * Sets up profile content peronalised to the user.
  */
 const setupProfile = () => {
-    const userEmail = sessionStorage.getItem("userEmail");
+    const userEmail = localStorage.getItem("userEmail");
     document.getElementById("emailAddressProfile").innerHTML = `Email address: ${userEmail}`;
 }
 

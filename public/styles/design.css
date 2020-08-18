@@ -24,6 +24,10 @@
 #searchIcon {
     height: 24px;
 }
+#uploadFormContent, #profileDescContent {
+    overflow-y: auto;
+    max-height: 80%;
+}
 #profileBtn {
     position: absolute;
     top: 1.5%;
@@ -34,7 +38,7 @@
 #profileIcon {
     height: 24px;
 }
-#logoffBtn, #supportBtn, #uploadBtn {
+#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;
@@ -44,4 +48,12 @@
     font-size: 24px;
     height: 60px;
     width: 60px;
+}
+#userUploadBody, #examUploadBody {
+    display: none;
+}
+#examUploadTab, #userUploadTab {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 20%;
 }

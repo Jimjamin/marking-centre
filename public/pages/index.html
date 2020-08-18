@@ -27,7 +27,7 @@
                 </select>
                 <button id="profileBtn" class="w3-button w3-circle w3-border w3-border-black w3-dropdown-click" onclick="document.getElementById('profileDesc').style.display='block'"><img id="profileIcon" src="../images/profile.png"></button>
                 <div id="profileDesc" class="w3-modal">
-                    <div class="w3-modal-content w3-animate-zoom">
+                    <div id="profileDescContent" class="w3-modal-content w3-animate-zoom w3-round-xlarge">
                         <div class="w3-container">
                             <span onclick="document.getElementById('profileDesc').style.display='none'"
                                 class="w3-button w3-display-topright">&times;</span>
@@ -50,14 +50,83 @@
                 <br>
                 <button id="upload" class="w3-button w3-circle w3-xlarge w3-border w3-border-black" onclick="document.getElementById('uploadForm').style.display='block'">+</button>
                 <div id="uploadForm" class="w3-modal">
-                    <div class="w3-modal-content w3-animate-zoom">
+                    <div id="uploadFormContent" class="w3-modal-content w3-animate-zoom w3-round-xlarge">
                         <div class="w3-container">
-                            <span onclick="document.getElementById('uploadForm').style.display='none'"
+                            <span onclick="window.location.reload()"
                                 class="w3-button w3-display-topright">&times;</span>
-                            <h3 class="w3-center">Create new jobs</h3>
+                            <h3 class="w3-center">Upload records</h3>
                         </div>
-                        <div class="w3-container w3-center">
-                            <button id="uploadBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                        <div id="chooseUploadType" class="w3-container w3-center">
+                            <button id="examUploadTab" class="w3-button w3-border w3-border-black w3-round-xlarge">Exams</button>
+                            <button id="userUploadTab" class="w3-button w3-border w3-border-black w3-round-xlarge">Users</button>
+                        </div>
+                        <div id="examUploadBody">
+                            <div class="w3-container">
+                                <p>
+                                    Upload any CSV (*.csv) files from your computer (multiple allowed at a time) to update the database with new records
+                                    and exam questions. You will find below the intended format these CSV files should be written in to correctly update
+                                    the database. 
+                                </p>
+                                <p>
+                                    Don't worry though, if you make a mistake in formatting the records will not be uploaded and you will
+                                    be informed of this error. If you have any unexpected troubles, contact support (your school MCO admin) when clicking
+                                    on your profile in the top right-hand corner.
+                                </p>
+                                <input type="file" accept=".csv" class="w3-input w3-border-0" multiple>
+                                <br>
+                                <p>
+                                    If you wish to only upload one record at once, you can use the below form. If the exam question is split across multiple
+                                    images make sure to upload them all at once.
+                                </p>
+                                <label>Student ID</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="782201">
+                                <label>Exam ID</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="0228">
+                                <label>Teacher email address</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au">
+                                <label>Question number</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="5">
+                                <input type="file" accept="image/*" class="w3-input w3-border-0" multiple>
+                            </div>
+                            <div class="w3-container w3-center">
+                                <button id="uploadExamBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                            </div>
+                        </div>
+                        <div id="userUploadBody">
+                            <div class="w3-container">
+                                <p>
+                                    Upload any CSV (*.csv) files from your computer (multiple allowed at a time) to update the database with new registered
+                                    users. You will find below the intended format these CSV files should be written in to correctly update the database.
+                                </p>
+                                <p>
+                                    Don't worry though, if you make a mistake in formatting the records will not be uploaded and you will
+                                    be informed of this error. If you have any unexpected troubles, contact support (your school MCO admin) when
+                                    clicking on your profile in the top right-hand corner.
+                                </p>
+                                <input type="file" accept=".csv" class="w3-input w3-border-0" multiple>
+                                <br>
+                                <p>
+                                    If you wish to only register one new user at once, use the below form and assign them as an admin if you wish
+                                    them to be able to upload new records and register other user's themselves.
+                                </p>
+                                <label>Given name(s)</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="John">
+                                <label>Family name(s)</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="Smith">
+                                <label>Email address</label>
+                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au">
+                                <label>Password</label>
+                                <input type="password" class="w3-input w3-border w3-border-black w3-round-xlarge">
+                                <label>Confirm password</label>
+                                <input type="password" class="w3-input w3-border w3-border-black w3-round-xlarge">
+                                <input type="radio" class="w3-radio" value="nonAdminUser" checked>
+                                <label>Non-admin user</label>
+                                <input type="radio" class="w3-radio" value="adminUser">
+                                <label>Admin user</label>
+                            </div>
+                            <div class="w3-container w3-center">
+                                <button id="uploadUserBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                            </div>
                         </div>
                     </div>
                 </div>
