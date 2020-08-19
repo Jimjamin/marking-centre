@@ -76,9 +76,10 @@
                                     <div class="w3-container">
                                         <p>STUDENT ID,EXAM ID,TEACHER EMAIL ADDRESS,QUESTION NUMBER,FILE LOCATIONS</p>
                                         <p>782201,0228,jsmit1@eq.edu.au,5,G:\CoreData\example1.png G:\CoreData\example2.png</p>
+                                        <p>782201,0228,jsmit1@eq.edu.au,6,G:\CoreData\example3.png</p>
                                     </div>
                                 </div>
-                                <input type="file" accept=".csv" class="w3-input w3-border-0">
+                                <input id="userExamUpload" type="file" accept=".csv" class="w3-input w3-border-0">
                                 <div class="w3-container w3-center">
                                     <button id="uploadExamBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
                                 </div>
@@ -90,16 +91,17 @@
                                     images make sure to upload them all at once.
                                 </p>
                                 <label>Student ID</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="782201">
+                                <input id="studentIDInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="782201">
                                 <label>Exam ID</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="0228">
+                                <input id="examIDInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="0228">
                                 <label>Teacher email address</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au">
+                                <input id="teacherEmailAddressInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au">
                                 <label>Question number</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="5">
-                                <input type="file" accept="image/*" class="w3-input w3-border-0" multiple>
+                                <input id="questionNumberInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="5">
+                                <label>File location (in case of multiple files seperate by comma)</label>
+                                <input id="questionFileInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="G:\CoreData\example1.png, G:\CoreData\example2.png">
                                 <div class="w3-container w3-center">
-                                    <button id="uploadExamBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                                    <button id="uploadExamFormBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
                                 </div>
                             </div>
                         </div>
@@ -134,21 +136,21 @@
                                     them to be able to upload new records and register other user's themselves.
                                 </p>
                                 <label>Given name(s)</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="John">
+                                <input id="givenNameInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="John">
                                 <label>Family name(s)</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="Smith">
+                                <input id="familyNameInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="Smith">
                                 <label>Email address</label>
-                                <input type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au">
+                                <input id="emailAddressInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="jsmit1@eq.edu.au">
                                 <label>Password</label>
-                                <input type="password" class="w3-input w3-border w3-border-black w3-round-xlarge">
+                                <input id="passwordInput" type="password" class="w3-input w3-border w3-border-black w3-round-xlarge">
                                 <label>Confirm password</label>
-                                <input type="password" class="w3-input w3-border w3-border-black w3-round-xlarge">
-                                <input type="radio" class="w3-radio" value="nonAdminUser" checked>
+                                <input id="passwordConfirmInput" type="password" class="w3-input w3-border w3-border-black w3-round-xlarge">
+                                <input type="radio" class="w3-radio" value="" name="adminCheck" checked>
                                 <label>Non-admin user</label>
-                                <input type="radio" class="w3-radio" value="adminUser">
+                                <input type="radio" class="w3-radio" value="admin" name="adminCheck">
                                 <label>Admin user</label>
                                 <div class="w3-container w3-center">
-                                    <button id="uploadUserBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                                    <button id="uploadUserFormBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
                                 </div>
                             </div>
                         </div>

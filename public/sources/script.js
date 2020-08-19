@@ -1,27 +1,15 @@
 
 "use strict";
 
-import { validateLogin, logoffBtn } from './modules/login.js';
-//import { createTable } from './modules/table.js';
-import { positionBtn } from './build/recordBtn.js';
-//import { appendSortBtn } from './modules/sort.js';
-import { buildList } from './build/searchColumn.js';
-import { setupProfile } from './build/profile.js';
-import { makeSearch } from './modules/search.js';
-import { uploadButtonEventListener } from './build/uploadForm.js'
-import { uploadUser } from './modules/upload.js';
+import { validateLogin } from './modules/login.js';
+import { documentSet } from './script/onload.js';
+import { addClickEventListeners } from './script/onclick.js';
 
 window.onload = function() {
     const path = window.location.pathname;
     if (path !== "/login") {
-        buildList();
-        document.getElementById("search").onkeyup = makeSearch;
-        positionBtn();
-        //createTable();
-        setupProfile();
-        document.getElementById("logoffBtn").onclick = logoffBtn;
-        document.getElementById("uploadUserBtn").onclick = uploadUser;
-        uploadButtonEventListener();
+        documentSet();
+        addClickEventListeners();
     } else { 
         localStorage.removeItem("userEmail");
         document.getElementById("logonForm").onsubmit = validateLogin;

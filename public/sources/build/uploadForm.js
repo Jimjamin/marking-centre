@@ -1,7 +1,7 @@
 
 "use strict";
 
-const uploadButtonEventListener = () => {
+const formButtonEventListener = () => {
     document.getElementById("userUploadTab").addEventListener("click", () => {
         document.getElementById("userUploadTab").style.display = "none";
         document.getElementById("examUploadTab").style.display = "none";
@@ -16,4 +16,4 @@ const uploadButtonEventListener = () => {
     });
 }
 
-export { uploadButtonEventListener }
+export { formButtonEventListener }

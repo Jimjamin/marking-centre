@@ -29,8 +29,11 @@ app.use((request, result, next) => {
 });
 home.openRoute(app, path, url);
 app.get('/', (request, result) => result.redirect('/home'));
-upload.loadUserFile(app, formidable, fs, csv);
+upload.loadUserFile(app, url, formidable, fs, csv);
 upload.displayUserFile(app, path);
+upload.loadExamFile(app, url, formidable, fs, csv);
+upload.displayExamFile(app, path);
 upload.loadCurrentSession(app);
+upload.confirmUpload(app);
 
 app.listen(process.env.PORT || 3000, () => console.log("[SUCCESS][SERVER] Server is listening on port 3000"));

@@ -38,7 +38,7 @@
 #profileIcon {
     height: 24px;
 }
-#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn {
+#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn, #uploadExamFormBtn, #uploadUserFormBtn {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;

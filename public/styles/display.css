@@ -6,6 +6,7 @@
     top: 8%;
     left: 8%;
     padding: 16px;
+    overflow-y: auto;
 }
 #confirmUploadBtn, #cancelUploadBtn {
     margin-top: 16px;

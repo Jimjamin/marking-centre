@@ -12,6 +12,7 @@ const search = require('./../middleware/search.js');
  */
 exports.openRoute = (app, path, url) => {
     app.get('/home', (request, result) => {
+        if (request.session.uploadSession) request.session.uploadSession = "";
         let [querySearch, queryColumn] = search.querySearch(request, url);
         if (querySearch) search.executeSearch(result, querySearch, queryColumn);
         if (!querySearch) {
