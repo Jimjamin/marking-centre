@@ -11,7 +11,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const { Client } = require('pg')
 const client = new Client({
-    connectionString: process.env.CONNECTION_STRING,
+    connectionString: process.env.CONNECTION_STRING || process.env.DATABASE_URL,
     ssl: true,
     sslmode: require
 })

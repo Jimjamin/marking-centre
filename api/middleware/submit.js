@@ -3,6 +3,7 @@
 
 exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto) => {
     let valuesToInsert, statusOfUpload;
+    let insertQuery = `INSERT INTO ${tableToInsertInto} (${columnsToInsertInto}) VALUES ($1, $2, $3, $4, $5)`;
     if (tableToInsertInto === "staff") {
         if (dataToUpload[rowsToInsert][5] === "admin") dataToUpload[rowsToInsert][5] = true;
         else dataToUpload[rowsToInsert][5] = false;
@@ -22,7 +23,7 @@ exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, 
             `'${dataToUpload[rowsToInsert][4]}'`
         ];
     }
-    client.query(`INSERT INTO ${tableToInsertInto} (${columnsToInsertInto}) VALUES (${valuesToInsert})`, (error, response) => {
+    client.query(insertQuery, valuesToInsert, (error, response) => {
         if (error) {
             console.log("[FAILURE][UPLOAD] Upload to database has failed");
             statusOfUpload = false;
