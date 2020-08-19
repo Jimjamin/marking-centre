@@ -9,7 +9,8 @@ import { setupProfile } from './../build/profile.js';
 
 const documentSet = () => {
     buildList();
-    positionBtn();
+    if (localStorage.getItem("userEmail") !== "admin@eq.edu.au") document.getElementById("upload").style.display = "none";
+    else positionBtn();
     //createTable();
     //appendSortBtn();
     setupProfile();

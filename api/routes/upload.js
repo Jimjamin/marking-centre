@@ -2,6 +2,7 @@
 "use strict";
 
 const csvUpload = require('./../middleware/upload-csv.js');
+const submit = require('./../middleware/submit.js')
 
 const callDisplay = (result, path) => {
     result.sendFile(path.join(__dirname, '../../public/pages/', 'display.html'), error => {
@@ -14,12 +15,12 @@ exports.loadUserFile = (app, url, formidable, fs, csv) => {
     app.post('/upload/users', (request, result) => {
         const typeOfUpload = url.parse(request.url, true).query.type;
         let userDataRows = [{
-            0: "Given Name(s)",
-            1: "Family Name(s)",
-            2: "Email Address",
+            0: "Given name(s)",
+            1: "Family name(s)",
+            2: "Email address",
             3: "Password",
-            4: "Password Confirmation",
-            5: "Admin Status"
+            4: "Password confirmation",
+            5: "Admin status"
         }];
         if (typeOfUpload === "file") csvUpload.parse(formidable, request, fs, csv, userDataRows, result);
         else {
@@ -86,9 +87,26 @@ exports.displayExamFile = (app, path) => {
 
 exports.loadCurrentSession = app => app.get('/upload/confirm', (request, result) => result.send(request.session.uploadSession));
 
-exports.confirmUpload = app => {
+exports.confirmUpload = (app, client) => {
     app.get('/upload/submit', (request, result) => {
-        console.log("[SUCCESS][UPLOAD] User has submitted upload to database");
-        result.send({ message: "File has uploaded successfully" });
+        const dataToUpload = request.session.uploadSession;
+        let tableToInsertInto, columnsToInsertInto;
+        if (dataToUpload[0][0] === "Given name(s)") {
+            tableToInsertInto = "staff";
+            columnsToInsertInto = ["first_name", "last_name", "email_address", "user_password", "is_admin"];
+        } else {
+            tableToInsertInto = "questions";
+            columnsToInsertInto = ["student_ID", "exam_ID", "teacher_email", "question_number", "file_locations"];
+        }
+        dataToUpload.shift();
+        let statusOfUpload = [];
+        for (let rowsToInsert in dataToUpload) {
+            statusOfUpload[rowsToInsert] = submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto);
+        }
+        if (statusOfUpload.every(status => status === false)) {
+            result.send({ message: "No data has been uploaded due to errors" });
+        } else if (statusOfUpload.some(status => status === false)) { 
+            result.send({ message: "Data has been uploaded but some rows have not been submitted due to errors" });
+        } else result.send({ message: "Data has been uploaded with no errors" });
     })
 }

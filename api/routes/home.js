@@ -15,7 +15,7 @@ exports.openRoute = (app, path, url) => {
         if (request.session.uploadSession) request.session.uploadSession = "";
         let [querySearch, queryColumn] = search.querySearch(request, url);
         if (querySearch) search.executeSearch(result, querySearch, queryColumn);
-        if (!querySearch) {
+        else {
             result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
                 if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
                 else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
