@@ -1,11 +1,13 @@
 
 "use strict";
 
+import { createTable } from './table.js';
+
 /**
  * Checks to see if a non-null search has been made and updates the fetch URL respectively.
  */
 const updateSearch = () => {
-    let url = `${window.location.protocol}//${window.location.host}/home`;
+    let url = `${window.location.protocol}//${window.location.host}/exams`;
     const searchQuery = document.getElementById("search").value;
     if (!searchQuery) return url;
     const searchColumn = document.getElementById("searchColumn").value;
@@ -21,7 +23,7 @@ const makeSearch = () => {
     if (window.location.href !== url) {
         fetch(url)
             .then(response => response.json())
-            .then(response => { if (response.searchData) document.getElementById("test").innerHTML = response.searchData })
+            .then(response => createTable(response))
             .catch(error => alert(error.message))
     }
     else window.location.reload();

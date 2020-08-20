@@ -90,6 +90,8 @@ exports.loadCurrentSession = app => app.get('/upload/confirm', (request, result)
 exports.confirmUpload = (app, client) => {
     app.get('/upload/submit', (request, result) => {
         const dataToUpload = request.session.uploadSession;
+        request.session.uploadStatus = "";
+        request.session.failedUploads = 0;
         let tableToInsertInto, columnsToInsertInto;
         if (dataToUpload[0][0] === "Given name(s)") {
             tableToInsertInto = "staff";
@@ -99,14 +101,7 @@ exports.confirmUpload = (app, client) => {
             columnsToInsertInto = ["student_ID", "exam_ID", "teacher_email", "question_number", "file_locations"];
         }
         dataToUpload.shift();
-        let statusOfUpload = [];
-        for (let rowsToInsert in dataToUpload) {
-            statusOfUpload[rowsToInsert] = submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto);
-        }
-        if (statusOfUpload.every(status => status === false)) {
-            result.send({ message: "No data has been uploaded due to errors" });
-        } else if (statusOfUpload.some(status => status === false)) { 
-            result.send({ message: "Data has been uploaded but some rows have not been submitted due to errors" });
-        } else result.send({ message: "Data has been uploaded with no errors" });
+        for (let rowsToInsert in dataToUpload) submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request);
+        result.send({ message: "Data has been uploaded" });
     })
 }

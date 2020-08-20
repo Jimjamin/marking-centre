@@ -1,9 +1,8 @@
 
 "use strict"
 
-exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto) => {
-    let valuesToInsert, statusOfUpload;
-    let insertQuery = `INSERT INTO ${tableToInsertInto} (${columnsToInsertInto}) VALUES ($1, $2, $3, $4, $5)`;
+exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request) => {
+    let valuesToInsert;
     if (tableToInsertInto === "staff") {
         if (dataToUpload[rowsToInsert][5] === "admin") dataToUpload[rowsToInsert][5] = true;
         else dataToUpload[rowsToInsert][5] = false;
@@ -23,14 +22,11 @@ exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, 
             `'${dataToUpload[rowsToInsert][4]}'`
         ];
     }
-    client.query(insertQuery, valuesToInsert, (error, response) => {
+    client.query(`INSERT INTO ${tableToInsertInto} (${columnsToInsertInto}) VALUES (${valuesToInsert})`, error => {
         if (error) {
             console.log("[FAILURE][UPLOAD] Upload to database has failed");
-            statusOfUpload = false;
-        } else {
-            console.log("[SUCCESS][UPLOAD] User has submitted upload to database");
-            statusOfUpload = true;
-        }
+            request.session.failedUploads++
+            request.session.uploadStatus = `${request.session.failedUploads} upload(s) failed, check your file for possible errors or contact support`;
+        } else console.log("[SUCCESS][UPLOAD] User has submitted upload to database");
     })
-    return statusOfUpload
 }

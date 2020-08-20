@@ -34,7 +34,8 @@ app.use((request, result, next) => {
     if (!request.session.userLoggedIn) result.redirect('/login');
     else next();
 });
-home.openRoute(app, path, url);
+home.openRoute(app, path, url, client);
+home.showExams(app, url, client);
 app.get('/', (request, result) => result.redirect('/home'));
 upload.loadUserFile(app, url, formidable, fs, csv);
 upload.displayUserFile(app, path);
