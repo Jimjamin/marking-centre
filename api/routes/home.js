@@ -23,10 +23,11 @@ exports.openRoute = (app, path, url, client) => {
 exports.showExams = (app, url, client) => {
     app.get('/exams', (request, result) => {
         let [querySearch, queryColumn] = search.querySearch(request, url);
-        let userEmail = url.parse(request.url, true).query.email;
-        if (querySearch) search.executeSearch(result, querySearch, queryColumn, userEmail, client);
+        const userEmail = url.parse(request.url, true).query.email;
+        let emailCheck = search.emailValidation(userEmail, client);
+        if (querySearch) search.executeSearch(result, userEmail, querySearch, queryColumn, client);
         else {
-            client.query(`SELECT * FROM questions WHERE teacher_email='${userEmail}'`, (error, response) => {
+            client.query(`SELECT * FROM questions ${emailCheck}`, (error, response) => {
                 if (error) console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed");
                 else {
                     result.send(response.rows);
