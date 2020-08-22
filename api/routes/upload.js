@@ -90,8 +90,6 @@ exports.loadCurrentSession = app => app.get('/upload/confirm', (request, result)
 exports.confirmUpload = (app, client) => {
     app.get('/upload/submit', (request, result) => {
         const dataToUpload = request.session.uploadSession;
-        request.session.uploadStatus = "";
-        request.session.failedUploads = 0;
         let tableToInsertInto, columnsToInsertInto;
         if (dataToUpload[0][0] === "Given name(s)") {
             tableToInsertInto = "staff";
@@ -102,6 +100,6 @@ exports.confirmUpload = (app, client) => {
         }
         dataToUpload.shift();
         for (let rowsToInsert in dataToUpload) submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request);
-        result.send({ message: "Data has been uploaded" });
+        result.send({ message: "Records have been uploaded to database" });
     })
 }

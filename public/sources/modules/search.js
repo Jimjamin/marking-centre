@@ -7,11 +7,11 @@ import { createTable } from './table.js';
  * Checks to see if a non-null search has been made and updates the fetch URL respectively.
  */
 const updateSearch = () => {
-    let url = `${window.location.protocol}//${window.location.host}/exams`;
+    let url = `${window.location.protocol}//${window.location.host}/exams?email=${localStorage.getItem("userEmail")}`;
     const searchQuery = document.getElementById("search").value;
     if (!searchQuery) return url;
     const searchColumn = document.getElementById("searchColumn").value;
-    url += `?search=${searchQuery}&column=${searchColumn}`;
+    url += `&search=${searchQuery}&column=${searchColumn}`;
     return url;
 }
 

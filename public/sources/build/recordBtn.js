@@ -39,22 +39,13 @@ const positionBtn = () => {
     adjustBtn(uploadBtn, uploadBtnBottomMargin, uploadBtnRightMargin);
 }
 
-const checkUpload = () => {
-    const baseURL = `${window.location.protocol}//${window.location.host}`;
-    const url = `${baseURL}/home?check=upload`;
-    fetch(url)
-        .then(response => response.json())
-        .then(response => { if (response.message) alert(response.message) })
-        .catch(error => alert(error.message))
-}
-
 const checkTable = () => {
     const baseURL = `${window.location.protocol}//${window.location.host}`;
-    const url = `${baseURL}/exams`;
+    const url = `${baseURL}/exams?email=${localStorage.getItem("userEmail")}`;
     fetch(url)
         .then(result => result.json())
         .then(result => createTable(result))
         .catch(error => alert(error.message))
 }
 
-export { positionBtn, checkTable, checkUpload }
+export { positionBtn, checkTable }

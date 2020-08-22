@@ -13,10 +13,6 @@ const search = require('./../middleware/search.js');
 exports.openRoute = (app, path, url, client) => {
     app.get('/home', (request, result) => {
         if (request.session.uploadSession) request.session.uploadSession = "";
-        /*else if (url.parse(request.url, true).query.check === "upload") {
-            result.send({ message: request.session.uploadStatus });
-            request.session.uploadStatus = "";
-        }*/
         result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
             if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
             else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
@@ -27,9 +23,10 @@ exports.openRoute = (app, path, url, client) => {
 exports.showExams = (app, url, client) => {
     app.get('/exams', (request, result) => {
         let [querySearch, queryColumn] = search.querySearch(request, url);
-        if (querySearch) search.executeSearch(result, querySearch, queryColumn, client);
+        let userEmail = url.parse(request.url, true).query.email;
+        if (querySearch) search.executeSearch(result, querySearch, queryColumn, userEmail, client);
         else {
-            client.query(`SELECT * FROM questions`, (error, response) => {
+            client.query(`SELECT * FROM questions WHERE teacher_email='${userEmail}'`, (error, response) => {
                 if (error) console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed");
                 else {
                     result.send(response.rows);
