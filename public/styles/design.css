@@ -60,3 +60,17 @@
     margin-bottom: 16px;
     width: 20%;
 }
+#markingCentre {
+    position: absolute;
+    left: 20%;
+    display: none;
+}
+#backBtn {
+    position: absolute;
+    left: 1.5%;
+    top: 1.5%;
+    display: none;
+}
+#backBtnImg {
+    height: 24px;
+}

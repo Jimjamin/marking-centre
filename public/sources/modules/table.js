@@ -13,6 +13,12 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
     bodyRow.insertCell(1).innerHTML = dataToDisplay[rowID].student_id;
     bodyRow.insertCell(2).innerHTML = dataToDisplay[rowID].question_number;
     bodyRow.insertCell(3).innerHTML = dataToDisplay[rowID].teacher_email;
+    bodyRow.addEventListener("click", () => { 
+        document.getElementById("markingCentre").data = `../files/${dataToDisplay[rowID].file_locations}`;
+        document.getElementById("markingCentre").style.display = "block";
+        document.getElementById("backBtn").style.display = "block";
+        tableToAppend.style.display = "none";
+    });
 }
 
 /**

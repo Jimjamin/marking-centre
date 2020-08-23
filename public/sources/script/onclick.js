@@ -13,6 +13,7 @@ const addClickEventListeners = () => {
     document.getElementById("uploadUserFormBtn").onclick = uploadUser;
     document.getElementById("uploadExamBtn").onclick = uploadExam;
     document.getElementById("uploadExamFormBtn").onclick = uploadExam;
+    document.getElementById("backBtn").addEventListener("click", () => { window.location.href = `${window.location.protocol}//${window.location.host}/home` });
     formButtonEventListener();
 }
 

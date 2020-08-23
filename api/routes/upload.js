@@ -2,7 +2,7 @@
 "use strict";
 
 const csvUpload = require('./../middleware/upload-csv.js');
-const submit = require('./../middleware/submit.js')
+const submit = require('./../middleware/submit.js');
 
 const callDisplay = (result, path) => {
     result.sendFile(path.join(__dirname, '../../public/pages/', 'display.html'), error => {
@@ -69,11 +69,12 @@ exports.loadExamFile = (app, url, formidable, fs, csv) => {
                     1: fields.examID,
                     2: fields.teacherEmailAddress,
                     3: fields.questionNumber,
-                    4: fields.fileLocation
+                    4: fields.fileLocation.split(':\\')[1]
                 });
                 request.session.uploadSession = examDataRows;
                 console.log("[SUCCESS][UPLOAD] User has uploaded form");
                 result.send({ message: "File has uploaded successfully" });
+                submit.uploadToDirectory(fields, fs);
             });
         }
     });

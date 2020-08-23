@@ -1,6 +1,8 @@
 
 "use strict";
 
+const submit = require('./submit.js');
+
 exports.parse = (formidable, request, fs, csv, rowsOfData, result) => {
     const uploadUserForm = formidable({ uploadDir: `${__dirname}/../../public/files/`, keepExtensions: true });
     uploadUserForm.parse(request, (error, fields, files) => {
@@ -16,7 +18,8 @@ exports.parse = (formidable, request, fs, csv, rowsOfData, result) => {
                     request.session.uploadSession = rowsOfData;
                     console.log("[SUCCESS][UPLOAD] User has uploaded CSV file");
                     result.send({ message: "File has uploaded successfully" });
+                    submit.uploadToDirectory(fields, fs);
                 })
         }
-    })
+    });
 }
