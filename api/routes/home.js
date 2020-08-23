@@ -20,20 +20,21 @@ exports.openRoute = (app, path, url, client) => {
     });
 }
 
+exports.validateCriteria = (app, url, client) => {
+    app.get('/check', (request, result) => {
+        if (url.parse(request.url, true).query.admin) {
+            let [querySearch, queryColumn] = search.querySearch(request, url);
+            const userEmail = url.parse(request.url, true).query.email;
+            if (search.emailValidation(userEmail, client, result, querySearch, queryColumn, true)) result.send({ admin: true });
+            else result.send({ admin: false })
+        }
+    });
+}
+
 exports.showExams = (app, url, client) => {
     app.get('/exams', (request, result) => {
         let [querySearch, queryColumn] = search.querySearch(request, url);
         const userEmail = url.parse(request.url, true).query.email;
-        let emailCheck = search.emailValidation(userEmail, client);
-        if (querySearch) search.executeSearch(result, userEmail, querySearch, queryColumn, client);
-        else {
-            client.query(`SELECT * FROM questions ${emailCheck}`, (error, response) => {
-                if (error) console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed");
-                else {
-                    result.send(response.rows);
-                    console.log("[SUCCESS][SEARCH] Loading of exam jobs has worked");
-                }
-            });
-        }
+        search.emailValidation(userEmail, client, result, querySearch, queryColumn, false);
     });
 }

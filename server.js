@@ -29,12 +29,13 @@ app.use(session({
 }));
 
 login.openRoute(app, path);
-login.logonUser(app, formidable);
+login.logonUser(app, formidable, client);
 app.use((request, result, next) => {
     if (!request.session.userLoggedIn) result.redirect('/login');
     else next();
 });
 home.openRoute(app, path, url, client);
+home.validateCriteria(app, url, client);
 home.showExams(app, url, client);
 app.get('/', (request, result) => result.redirect('/home'));
 upload.loadUserFile(app, url, formidable, fs, csv);

@@ -18,7 +18,7 @@ const validateLogin = () => {
     }
     localStorage.setItem("userEmail", email);
     // After ten seconds alert the user to a failed login request
-    setTimeout(() => alert("Your login request has timed out from possible server error"), 10000)
+    setTimeout(() => alert("You have entered the wrong email address or password"), 10000);
     return true;
 }
 

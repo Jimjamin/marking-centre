@@ -37,6 +37,11 @@ const positionBtn = () => {
     let uploadBtn = document.getElementById("upload");
     let [uploadBtnBottomMargin, uploadBtnRightMargin] = calcBtn(uploadBtn);
     adjustBtn(uploadBtn, uploadBtnBottomMargin, uploadBtnRightMargin);
+    const url = `${window.location.protocol}//${window.location.host}/check?email=${localStorage.getItem("userEmail")}&admin=true`;
+    fetch(url)
+        .then(response => response.json())
+        .then(response => { if (!response.admin) document.getElementById("upload").style.display = "none" })
+        .catch(error => alert(error.message))
 }
 
 const checkTable = () => {
