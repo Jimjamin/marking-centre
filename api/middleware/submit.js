@@ -31,6 +31,5 @@ exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, 
             console.log(uploadStatus);
         } else console.log("[SUCCESS][UPLOAD] User has submitted upload to database");
     })
-    console.log(uploadStatus);
     return uploadStatus;
 }

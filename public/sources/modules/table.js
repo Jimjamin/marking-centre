@@ -19,7 +19,7 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
  * Makes call to server for table data, and upon successful fetch will build table from said data.
  */
 const createTable = dataToDisplay => {
-    if (dataToDisplay.length > 1) {
+    if (dataToDisplay.length > 0) {
         const tableToAppend = document.getElementById("table");
         tableToAppend.innerHTML = "";
         for (let rowID in dataToDisplay) createTableBody(dataToDisplay, tableToAppend, rowID);

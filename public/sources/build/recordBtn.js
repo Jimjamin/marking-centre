@@ -40,7 +40,7 @@ const positionBtn = () => {
     const url = `${window.location.protocol}//${window.location.host}/check?email=${localStorage.getItem("userEmail")}&admin=true`;
     fetch(url)
         .then(response => response.json())
-        .then(response => { if (!response.admin) document.getElementById("upload").style.display = "none" })
+        .then(response => { if (!response.admin) document.getElementById("upload").style.display = "none"; })
         .catch(error => alert(error.message))
 }
 

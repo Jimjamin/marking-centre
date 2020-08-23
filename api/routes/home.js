@@ -25,8 +25,7 @@ exports.validateCriteria = (app, url, client) => {
         if (url.parse(request.url, true).query.admin) {
             let [querySearch, queryColumn] = search.querySearch(request, url);
             const userEmail = url.parse(request.url, true).query.email;
-            if (search.emailValidation(userEmail, client, result, querySearch, queryColumn, true)) result.send({ admin: true });
-            else result.send({ admin: false })
+            search.emailValidation(userEmail, client, result, querySearch, queryColumn, true)
         }
     });
 }

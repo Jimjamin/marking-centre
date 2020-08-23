@@ -19,10 +19,10 @@ exports.emailValidation = (userEmail, client, result, querySearch, queryColumn, 
         if (error) console.log("[FAILURE][SEARCH] Checking for user email address has failed");
         else if (response.rows.length > 0) {
             if (!skipSearch) this.executeSearch(result, "WHERE teacher_email ILIKE '%'", querySearch, queryColumn, client);
-            return true;
+            else result.send({ admin: true });
         } else { 
             if (!skipSearch) this.executeSearch(result, `WHERE teacher_email='${userEmail}'`, querySearch, queryColumn, client);
-            return false;
+            else result.send({ admin: false });
         }
     });
 }
