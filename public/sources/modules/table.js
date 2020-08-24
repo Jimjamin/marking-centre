@@ -14,10 +14,19 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
     bodyRow.insertCell(2).innerHTML = dataToDisplay[rowID].question_number;
     bodyRow.insertCell(3).innerHTML = dataToDisplay[rowID].teacher_email;
     bodyRow.addEventListener("click", () => { 
-        document.getElementById("markingCentre").data = `../files/${dataToDisplay[rowID].file_locations}`;
-        document.getElementById("markingCentre").style.display = "block";
-        document.getElementById("backBtn").style.display = "block";
-        tableToAppend.style.display = "none";
+        let filePaths = dataToDisplay[rowID].file_locations.split(';');
+        for (let file in filePaths) {
+            if (filePaths[file] !== " ") {
+                let objectToDisplay = document.createElement("object");
+                objectToDisplay.data = `../files/${filePaths[file].trim()}`;
+                objectToDisplay.width = "60%";
+                objectToDisplay.border = "3";
+                objectToDisplay.style.display = "block";
+                document.getElementById("backBtn").style.display = "block";
+                tableToAppend.style.display = "none";
+                document.getElementById("markingCentreDisplay").append(objectToDisplay);
+            }
+        }
     });
 }
 

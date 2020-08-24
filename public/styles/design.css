@@ -46,11 +46,13 @@
     width: 20%;
 }
 #upload {
-    position: sticky;
+    position: absolute;
     font-weight: 650;
     font-size: 24px;
     height: 60px;
     width: 60px;
+    top: 1.5%;
+    right: calc(3% + 60px);
 }
 #userUploadBody, #examUploadBody {
     display: none;
@@ -60,8 +62,8 @@
     margin-bottom: 16px;
     width: 20%;
 }
-#markingCentre {
-    position: absolute;
+object {
+    position: relative;
     left: 20%;
     display: none;
 }

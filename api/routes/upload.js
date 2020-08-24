@@ -27,17 +27,19 @@ exports.loadUserFile = (app, url, formidable, fs, csv) => {
             const uploadUserForm = formidable();
             uploadUserForm.parse(request, (error, fields) => {
                 if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload form");
-                userDataRows.push({
-                    0: fields.givenName,
-                    1: fields.familyName,
-                    2: fields.emailAddress,
-                    3: fields.password,
-                    4: fields.passwordConfirm,
-                    5: fields.isAdmin
-                });
-                request.session.uploadSession = userDataRows;
-                console.log("[SUCCESS][UPLOAD] User has uploaded form");
-                result.send({ message: "File has uploaded successfully" });
+                else {
+                    userDataRows.push({
+                        0: fields.givenName,
+                        1: fields.familyName,
+                        2: fields.emailAddress,
+                        3: fields.password,
+                        4: fields.passwordConfirm,
+                        5: fields.isAdmin
+                    });
+                    request.session.uploadSession = userDataRows;
+                    console.log("[SUCCESS][UPLOAD] User has uploaded form");
+                    result.send({ message: "File has uploaded successfully" });
+                }
             });
         }
     });
@@ -64,17 +66,25 @@ exports.loadExamFile = (app, url, formidable, fs, csv) => {
             const uploadUserForm = formidable();
             uploadUserForm.parse(request, (error, fields) => {
                 if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload form");
-                examDataRows.push({
-                    0: fields.studentID,
-                    1: fields.examID,
-                    2: fields.teacherEmailAddress,
-                    3: fields.questionNumber,
-                    4: fields.fileLocation.split(':\\')[1]
-                });
-                request.session.uploadSession = examDataRows;
-                console.log("[SUCCESS][UPLOAD] User has uploaded form");
-                result.send({ message: "File has uploaded successfully" });
-                submit.uploadToDirectory(fields, fs);
+                else {
+                    let filePaths = fields.fileLocation.split(':\\');
+                    let listOfFileLocations = "";
+                    for (let pathToFile = 1; pathToFile < filePaths.length; pathToFile++) {
+                        let filePathToSave = filePaths[pathToFile].split('; ')[0];
+                        listOfFileLocations += `${filePathToSave}; `;
+                    }
+                    examDataRows.push({
+                        0: fields.studentID,
+                        1: fields.examID,
+                        2: fields.teacherEmailAddress,
+                        3: fields.questionNumber,
+                        4: listOfFileLocations
+                    });
+                    request.session.uploadSession = examDataRows;
+                    console.log("[SUCCESS][UPLOAD] User has uploaded form");
+                    result.send({ message: "File has uploaded successfully" });
+                    submit.uploadToDirectory(fields.fileLocation, fs);
+                }
             });
         }
     });

@@ -34,23 +34,28 @@ exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, 
     return uploadStatus;
 }
 
-exports.uploadToDirectory = (fields, fs) => {
-    let arrayOfFolders = fields.fileLocation.split('\\');
-    let foldersToCreate = "";
-    for (let folder = 1; folder < arrayOfFolders.length - 1; folder++) foldersToCreate += `\\${arrayOfFolders[folder]}`;
-    fs.mkdir(`C:\\marking-centre\\public\\files${foldersToCreate}`, { recursive: true }, error => {
-        if (error) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
-        else {
-            fs.readFile(fields.fileLocation, (err, data) => {
-                if (err) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
-                else {
-                    let fileData = data;
-                    fs.writeFile(`C:\\marking-centre\\public\\files\\${fields.fileLocation.split(':\\')[1]}`, fileData, e => {
-                        if (e) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
-                        else console.log("[SUCCESS][UPLOAD] File has been copied to correct location");
-                    });
-                }
-            });
-        }
-    });
+exports.uploadToDirectory = (fileLocation, fs) => {
+    let readFileLocation = fileLocation.split('; ')
+    let filePaths = fileLocation.split(':\\');
+    for (let pathOfFile = 1; pathOfFile < filePaths.length; pathOfFile++) {
+        let filePathToSave = filePaths[pathOfFile].split('; ');
+        let arrayOfFolders = [];
+        arrayOfFolders[pathOfFile] = filePathToSave[0].split('\\');
+        let foldersToCreate = "";
+        for (let folder = 0; folder < arrayOfFolders[pathOfFile].length - 1; folder++) foldersToCreate += `\\${arrayOfFolders[pathOfFile][folder]}`;
+        fs.mkdir(`C:\\marking-centre\\public\\files${foldersToCreate}`, { recursive: true }, error => {
+            if (error) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
+            else {
+                fs.readFile(readFileLocation[pathOfFile - 1], (err, data) => {
+                    if (err) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
+                    else {
+                        fs.writeFile(`C:\\marking-centre\\public\\files\\${filePathToSave[0]}`, data, e => {
+                            if (e) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
+                            else console.log("[SUCCESS][UPLOAD] File has been copied to correct location");
+                        });
+                    }
+                });
+            }
+        });
+    }
 }
