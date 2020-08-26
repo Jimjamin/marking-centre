@@ -57,7 +57,7 @@
 #userUploadBody, #examUploadBody {
     display: none;
 }
-#examUploadTab, #userUploadTab {
+#examUploadTab, #userUploadTab, #saveGradeBtn {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;
@@ -72,7 +72,23 @@ object {
     left: 1.5%;
     top: 1.5%;
     display: none;
+    height: 60px;
+    width: 60px;
+}
+#commentBtn {
+    position: absolute;
+    left: calc(3% + 60px);
+    top: 1.5%;
+    display: none;
+    height: 60px;
+    width: 60px;
+}
+#commentBtnImg {
+    height: 28px;
 }
 #backBtnImg {
     height: 24px;
+}
+#gradeInput {
+    resize: none;
 }

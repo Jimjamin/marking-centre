@@ -19,8 +19,10 @@ window.onload = function() {
 window.onclick = formToClose => {
     const profileDesc = document.getElementById("profileDesc");
     const uploadForm = document.getElementById("uploadForm");
+    const gradeForm = document.getElementById("gradingForm");
     if (formToClose.target === profileDesc) profileDesc.style.display = "none";
-    if (formToClose.target === uploadForm) { 
+    else if (formToClose.target === gradeForm) gradeForm.style.display = "none";
+    else if (formToClose.target === uploadForm) { 
         uploadForm.style.display = "none";
         window.location.reload();
     }

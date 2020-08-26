@@ -20,6 +20,7 @@ client.connect();
 const home = require('./api/routes/home.js');
 const login = require('./api/routes/login.js');
 const upload = require('./api/routes/upload.js');
+const grade = require('./api/routes/grade.js');
 
 app.use(express.static(path.join(__dirname, process.env.STATIC || 'public/')));
 app.use(session({
@@ -44,5 +45,6 @@ upload.loadExamFile(app, url, formidable, fs, csv);
 upload.displayExamFile(app, path);
 upload.loadCurrentSession(app);
 upload.confirmUpload(app, client);
+grade.uploadTeacherGrade(app, formidable, client);
 
 app.listen(process.env.PORT || 3000, () => console.log("[SUCCESS][SERVER] Server is listening on port 3000"));

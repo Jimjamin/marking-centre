@@ -51,6 +51,25 @@
             <div id="body" class="w3-container">
                 <div id="markingCentreDisplay" class="w3-container">
                     <button id="backBtn" class="w3-button w3-circle w3-xlarge w3-border w3-border-black"><img id="backBtnImg" src="../images/back.png"></button>
+                    <button id="commentBtn" class="w3-button w3-circle w3-xlarge w3-border w3-border-black" onclick="document.getElementById('gradingForm').style.display = 'block'"><img id="commentBtnImg"
+                            src="../images/comment.png"></button>
+                    <div id="gradingForm" class="w3-modal">
+                        <div class="w3-modal-content w3-animate-zoom w3-round-xlarge">
+                            <div class="w3-container">
+                                <span onclick="document.getElementById('gradingForm').style.display = 'none'" class="w3-button w3-display-topright">&times;</span>
+                                <h3 class="w3-center">Grade assessment</h3>
+                            </div>
+                            <div class="w3-container">
+                                <label>Grade:</label>
+                                <input id="gradeInput" class="w3-input w3-border w3-border-0 w3-border-black w3-round-xlarge" maxlength="2">
+                                <label>Comment:</label>
+                                <textarea id="commentInput" class="w3-input w3-border w3-border-0 w3-border-black w3-round-xlarge"></textarea>
+                            </div>
+                            <div class="w3-container w3-center">
+                                <button id="saveGradeBtn" class="w3-button w3-border w3-border-0 w3-border-black w3-round-xlarge">Save</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <button id="upload" class="w3-button w3-circle w3-xlarge w3-border w3-border-black" onclick="document.getElementById('uploadForm').style.display='block'">+</button>

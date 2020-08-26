@@ -23,8 +23,13 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
                 objectToDisplay.border = "3";
                 objectToDisplay.style.display = "block";
                 document.getElementById("backBtn").style.display = "block";
+                document.getElementById("commentBtn").style.display = "block";
                 tableToAppend.style.display = "none";
                 document.getElementById("markingCentreDisplay").append(objectToDisplay);
+                window.sessionStorage.setItem("questionNumber", dataToDisplay[rowID].question_number);
+                window.sessionStorage.setItem("studentID", dataToDisplay[rowID].student_id);
+                window.sessionStorage.setItem("examID", dataToDisplay[rowID].exam_id);
+                window.sessionStorage.setItem("teacherEmail", dataToDisplay[rowID].teacher_email);
             }
         }
     });
