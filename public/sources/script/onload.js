@@ -1,16 +1,14 @@
 
 "use strict";
 
-import { checkTable } from './../build/recordBtn.js';
-//import { appendSortBtn } from './../modules/sort.js';
 import { buildList } from './../build/searchColumn.js';
 import { setupProfile } from './../build/profile.js';
+import { makeSearch } from '../modules/search.js';
 
 const documentSet = () => {
     buildList();
-    //appendSortBtn();
     setupProfile();
-    checkTable();
+    makeSearch();
 }
 
 export { documentSet }

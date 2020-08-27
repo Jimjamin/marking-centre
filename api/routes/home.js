@@ -24,8 +24,9 @@ exports.validateCriteria = (app, url, client) => {
     app.get('/check', (request, result) => {
         if (url.parse(request.url, true).query.admin) {
             let [querySearch, queryColumn] = search.querySearch(request, url);
+            let [querySortColumn, querySortOrder] = search.querySort(request, url);
             const userEmail = url.parse(request.url, true).query.email;
-            search.emailValidation(userEmail, client, result, querySearch, queryColumn, true)
+            search.emailValidation(userEmail, client, result, querySearch, queryColumn, true, querySortColumn, querySortOrder)
         }
     });
 }
@@ -33,7 +34,8 @@ exports.validateCriteria = (app, url, client) => {
 exports.showExams = (app, url, client) => {
     app.get('/exams', (request, result) => {
         let [querySearch, queryColumn] = search.querySearch(request, url);
+        let [querySortColumn, querySortOrder] = search.querySort(request, url);
         const userEmail = url.parse(request.url, true).query.email;
-        search.emailValidation(userEmail, client, result, querySearch, queryColumn, false);
+        search.emailValidation(userEmail, client, result, querySearch, queryColumn, false, querySortColumn, querySortOrder);
     });
 }

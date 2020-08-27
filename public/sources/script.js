@@ -7,6 +7,8 @@ import { addClickEventListeners } from './script/onclick.js';
 
 window.onload = function() {
     const path = window.location.pathname;
+    window.sessionStorage.setItem("index", "exam_id");
+    window.sessionStorage.setItem("order", "ASC");
     if (path !== "/login") {
         documentSet();
         addClickEventListeners();

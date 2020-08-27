@@ -1,10 +1,16 @@
 
 "use strict";
 
+import { appendSortBtn } from './sort.js'
+
 const createTableHeading = tableToAppend => {
     let headingRow = tableToAppend.insertRow(0);
     const headingCell = ["Exam ID", "Student ID", "Question number", "Teacher email"];
-    for (let cell in headingCell) headingRow.insertCell(cell).innerHTML = `<b>${headingCell[cell]}</b>`;
+    const headingBtn = ["exam_id", "student_id", "question_number", "teacher_email"];
+    for (let cell in headingCell) { 
+        headingRow.insertCell(cell).innerHTML = `<b>${headingCell[cell]}</b>`;
+        appendSortBtn(headingRow, cell, headingBtn[cell]);
+    }
 }
 
 const onRecordClick = (dataToDisplay, tableToAppend, rowID) => {
@@ -31,7 +37,7 @@ const onRecordClick = (dataToDisplay, tableToAppend, rowID) => {
 }
 
 const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
-    let bodyRow = tableToAppend.insertRow(rowID)
+    let bodyRow = tableToAppend.insertRow(1)
     bodyRow.insertCell(0).innerHTML = dataToDisplay[rowID].exam_id;
     bodyRow.insertCell(1).innerHTML = dataToDisplay[rowID].student_id;
     bodyRow.insertCell(2).innerHTML = dataToDisplay[rowID].question_number;
@@ -45,9 +51,9 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
 const createTable = dataToDisplay => {
     if (dataToDisplay.length > 0) {
         const tableToAppend = document.getElementById("table");
-        tableToAppend.innerHTML = "";
+        for (let row in tableToAppend.rows) if (tableToAppend.rows.length > 1) tableToAppend.deleteRow(1);
+        if (tableToAppend.rows.length === 0) createTableHeading(tableToAppend);
         for (let rowID in dataToDisplay) createTableBody(dataToDisplay, tableToAppend, rowID);
-        createTableHeading(tableToAppend);
     }
 }
 

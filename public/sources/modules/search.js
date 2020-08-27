@@ -8,6 +8,9 @@ import { createTable } from './table.js';
  */
 const updateSearch = () => {
     let url = `${window.location.protocol}//${window.location.host}/exams?email=${localStorage.getItem("userEmail")}`;
+    const sortColumn = window.sessionStorage.getItem("index");
+    const sortOrder = window.sessionStorage.getItem("order");
+    url += `&sort=${sortColumn}&order=${sortOrder}`;
     const searchQuery = document.getElementById("search").value;
     if (!searchQuery) return url;
     const searchColumn = document.getElementById("searchColumn").value;
