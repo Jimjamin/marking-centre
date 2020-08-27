@@ -9,6 +9,8 @@ import { saveGrades } from './../build/recordBtn.js';
 
 const addClickEventListeners = () => {
     document.getElementById("search").onkeyup = makeSearch;
+    document.getElementById("searchBtn").onclick = makeSearch;
+    document.getElementById("searchColumn").onchange = makeSearch;
     document.getElementById("logoffBtn").onclick = logoffBtn;
     document.getElementById("uploadUserBtn").onclick = uploadUser;
     document.getElementById("uploadUserFormBtn").onclick = uploadUser;

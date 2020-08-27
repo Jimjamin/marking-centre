@@ -23,13 +23,10 @@ const updateSearch = () => {
  */
 const makeSearch = () => {
     const url = updateSearch();
-    if (window.location.href !== url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(response => createTable(response))
-            .catch(error => alert(error.message))
-    }
-    else window.location.reload();
+    fetch(url)
+        .then(response => response.json())
+        .then(response => createTable(response))
+        .catch(error => alert(error.message))
 }
 
 export { makeSearch }

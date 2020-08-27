@@ -49,12 +49,12 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
  * Makes call to server for table data, and upon successful fetch will build table from said data.
  */
 const createTable = dataToDisplay => {
+    const tableToAppend = document.getElementById("table");
     if (dataToDisplay.length > 0) {
-        const tableToAppend = document.getElementById("table");
         for (let row in tableToAppend.rows) if (tableToAppend.rows.length > 1) tableToAppend.deleteRow(1);
         if (tableToAppend.rows.length === 0) createTableHeading(tableToAppend);
         for (let rowID in dataToDisplay) createTableBody(dataToDisplay, tableToAppend, rowID);
-    }
+    } else tableToAppend.innerHTML = "";
 }
 
 export { createTable }
