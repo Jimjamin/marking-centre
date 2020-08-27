@@ -45,16 +45,31 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
     bodyRow.addEventListener("click", () => onRecordClick(dataToDisplay, tableToAppend, rowID));
 }
 
+const addingTable = (tableToAppend, dataToDisplay) => {
+    for (let row in tableToAppend.rows) if (tableToAppend.rows.length > 1) tableToAppend.deleteRow(1);
+    if (tableToAppend.rows.length === 0) createTableHeading(tableToAppend);
+    for (let rowID in dataToDisplay) createTableBody(dataToDisplay, tableToAppend, rowID);
+}
+
 /**
  * Makes call to server for table data, and upon successful fetch will build table from said data.
  */
 const createTable = dataToDisplay => {
     const tableToAppend = document.getElementById("table");
+    const otherTableToAppend = document.getElementById("tableGrade");
+    let noGradeData = [];
+    let gradeData = [];
+    for (let row in dataToDisplay) {
+        if (!dataToDisplay[row].grade) noGradeData.push(dataToDisplay[row]);
+        else gradeData.push(dataToDisplay[row]);
+    }
     if (dataToDisplay.length > 0) {
-        for (let row in tableToAppend.rows) if (tableToAppend.rows.length > 1) tableToAppend.deleteRow(1);
-        if (tableToAppend.rows.length === 0) createTableHeading(tableToAppend);
-        for (let rowID in dataToDisplay) createTableBody(dataToDisplay, tableToAppend, rowID);
-    } else tableToAppend.innerHTML = "";
+        addingTable(tableToAppend, noGradeData);
+        addingTable(otherTableToAppend, gradeData);
+    } else {
+        tableToAppend.innerHTML = "";
+        otherTableToAppend.innerHTML = "";
+    }
 }
 
 export { createTable }

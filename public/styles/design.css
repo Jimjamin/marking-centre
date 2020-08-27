@@ -34,7 +34,10 @@
 #profileIcon {
     height: 24px;
 }
-#table {
+.table-heading {
+    padding-left: 19%;
+}
+#table, #tableGrade {
     position: relative;
     width: 60%;
     left: 19%;
