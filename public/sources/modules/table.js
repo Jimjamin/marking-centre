@@ -13,7 +13,7 @@ const createTableHeading = tableToAppend => {
     }
 }
 
-const onRecordClick = (dataToDisplay, tableToAppend, rowID) => {
+const onRecordClick = (dataToDisplay, rowID) => {
     let filePaths = dataToDisplay[rowID].file_locations.split(';');
     for (let file in filePaths) {
         if (filePaths[file] !== " ") {
@@ -24,7 +24,10 @@ const onRecordClick = (dataToDisplay, tableToAppend, rowID) => {
             objectToDisplay.style.display = "block";
             document.getElementById("backBtn").style.display = "block";
             document.getElementById("commentBtn").style.display = "block";
-            tableToAppend.style.display = "none";
+            document.getElementById("table").style.display = "none";
+            document.getElementById("tableGrade").style.display = "none";
+            for (let element of document.getElementsByClassName("table-heading")) element.style.display = "none";
+            for (let element of document.getElementsByClassName("table-heading-2")) element.style.display = "none";
             document.getElementById("markingCentreDisplay").append(objectToDisplay);
             window.sessionStorage.setItem("questionNumber", dataToDisplay[rowID].question_number);
             window.sessionStorage.setItem("studentID", dataToDisplay[rowID].student_id);
@@ -42,7 +45,7 @@ const createTableBody = (dataToDisplay, tableToAppend, rowID) => {
     bodyRow.insertCell(1).innerHTML = dataToDisplay[rowID].student_id;
     bodyRow.insertCell(2).innerHTML = dataToDisplay[rowID].question_number;
     bodyRow.insertCell(3).innerHTML = dataToDisplay[rowID].teacher_email;
-    bodyRow.addEventListener("click", () => onRecordClick(dataToDisplay, tableToAppend, rowID));
+    bodyRow.addEventListener("click", () => onRecordClick(dataToDisplay, rowID));
 }
 
 const addingTable = (tableToAppend, dataToDisplay) => {

@@ -12,6 +12,9 @@
     -webkit-appearance: none;
     appearance: none;
 }
+#searchColumn:hover {
+    cursor: pointer;
+}
 #searchBtn {
     position: relative;
     float: right;
@@ -34,10 +37,22 @@
 #profileIcon {
     height: 24px;
 }
-.table-heading {
+.table-heading, .table-heading-2 {
     padding-left: 19%;
 }
+.table-heading::after {
+    font-weight: 600;
+    content: '+';
+}
+.table-heading-2::after {
+    font-weight: 600;
+    content: '–';
+}
+.table-heading:hover, .table-heading-2:hover {
+    cursor: pointer;
+}
 #table, #tableGrade {
+    display: none;
     position: relative;
     width: 60%;
     left: 19%;
