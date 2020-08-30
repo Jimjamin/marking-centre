@@ -6,6 +6,12 @@ html {
     background-attachment: fixed;
     color: white !important;
 }
+tr:hover {
+    cursor: pointer;
+}
+table button:hover {
+    background: none !important;
+}
 #search {
     position: absolute;
     left: 32%;
