@@ -8,9 +8,9 @@
         <meta name="keywords" content="Distributed Marking Program, DMP, Marking, Moderation, Queensland, Education">
         <meta name="author" content="Brisvegas Bois">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../styles/design.css">
         <link rel="stylesheet" type="text/css" href="../styles/theme.css">
         <link rel="stylesheet" type="text/css" href="../styles/w3.css">
+        <link rel="stylesheet" type="text/css" href="../styles/design.css">
         <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
@@ -19,13 +19,13 @@
                 <div class="w3-center">
                     <h1 id="title">Marking Centre Online</h1>
                 </div>
-                <input id="search" class="w3-input w3-border w3-border-black w3-round-xlarge" type="text" placeholder="Search through list of jobs...">
+                <input id="search" class="w3-input w3-round-xlarge" type="text" placeholder="Search through list of jobs...">
                 <button id="searchBtn" type="submit" class="w3-button w3-round-xlarge w3-border-0"><img id="searchIcon"
                         src="../images/searchBlk.png"></button>
                 <select id="searchColumn" class="w3-select w3-border-0">
                     <option value="selectAll" selected>Search All</option>
                 </select>
-                <button id="profileBtn" class="w3-button w3-circle w3-border w3-border-black w3-dropdown-click" onclick="document.getElementById('profileDesc').style.display='block'"><img id="profileIcon" src="../images/profile.png"></button>
+                <button id="profileBtn" class="w3-button w3-circle" onclick="document.getElementById('profileDesc').style.display='block'"><img id="profileIcon" src="../images/profile.png"></button>
                 <div id="profileDesc" class="w3-modal">
                     <div id="profileDescContent" class="w3-modal-content w3-animate-zoom w3-round-xlarge">
                         <div class="w3-container">
@@ -37,8 +37,8 @@
                             <p id="emailAddressProfile"></p>
                         </div>
                         <div class="w3-container w3-center">
-                            <button id="logoffBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Logoff</button>
-                            <button id="supportBtn" class="w3-button w3-border w3-border-black w3-round-xlarge" onclick="location.href='mailto:webmaster25228@gmail.com'">Support</button>
+                            <button id="logoffBtn" class="w3-button w3-round-xlarge">Logoff</button>
+                            <button id="supportBtn" class="w3-button w3-round-xlarge" onclick="location.href='mailto:webmaster25228@gmail.com'">Support</button>
                         </div>
                     </div>
                 </div>
@@ -46,16 +46,16 @@
             <br>
             <div id="tableBody" class="w3-container">
                 <h3 class="table-heading" id="activeJobs">Active jobs &emsp;</h3>
-                <table id="table" class="w3-table w3-border w3-border-black"></table>
+                <table id="table" class="w3-table"></table>
                 <br>
                 <h3 class="table-heading" id="completedJobs">Completed jobs &emsp;</h3>
-                <table id="tableGrade" class="w3-table w3-border w3-border-black"></table>
+                <table id="tableGrade" class="w3-table"></table>
             </div>
             <br>
             <div id="body" class="w3-container">
                 <div id="markingCentreDisplay" class="w3-container">
-                    <button id="backBtn" class="w3-button w3-circle w3-xlarge w3-border w3-border-black"><img id="backBtnImg" src="../images/back.png"></button>
-                    <button id="commentBtn" class="w3-button w3-circle w3-xlarge w3-border w3-border-black" onclick="document.getElementById('gradingForm').style.display = 'block'"><img id="commentBtnImg"
+                    <button id="backBtn" class="w3-button w3-circle w3-xlarge"><img id="backBtnImg" src="../images/back.png"></button>
+                    <button id="commentBtn" class="w3-button w3-circle w3-xlarge" onclick="document.getElementById('gradingForm').style.display = 'block'"><img id="commentBtnImg"
                             src="../images/comment.png"></button>
                     <div id="gradingForm" class="w3-modal">
                         <div class="w3-modal-content w3-animate-zoom w3-round-xlarge">
@@ -70,13 +70,13 @@
                                 <textarea id="commentInput" class="w3-input w3-border w3-border-0 w3-border-black w3-round-xlarge"></textarea>
                             </div>
                             <div class="w3-container w3-center">
-                                <button id="saveGradeBtn" class="w3-button w3-border w3-border-0 w3-border-black w3-round-xlarge">Save</button>
+                                <button id="saveGradeBtn" class="w3-button w3-round-xlarge">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
-                <button id="upload" class="w3-button w3-circle w3-xlarge w3-border w3-border-black" onclick="document.getElementById('uploadForm').style.display='block'">+</button>
+                <button id="upload" class="w3-button w3-circle w3-xlarge" onclick="document.getElementById('uploadForm').style.display='block'">+</button>
                 <div id="uploadForm" class="w3-modal">
                     <div id="uploadFormContent" class="w3-modal-content w3-animate-zoom w3-round-xlarge">
                         <div class="w3-container">
@@ -85,8 +85,8 @@
                             <h3 class="w3-center">Upload records</h3>
                         </div>
                         <div id="chooseUploadType" class="w3-container w3-center">
-                            <button id="examUploadTab" class="w3-button w3-border w3-border-black w3-round-xlarge">Exams</button>
-                            <button id="userUploadTab" class="w3-button w3-border w3-border-black w3-round-xlarge">Users</button>
+                            <button id="examUploadTab" class="w3-button w3-round-xlarge">Exams</button>
+                            <button id="userUploadTab" class="w3-button w3-round-xlarge">Users</button>
                         </div>
                         <div id="examUploadBody">
                             <div class="w3-container">
@@ -109,7 +109,7 @@
                                 </div>
                                 <input id="userExamUpload" type="file" accept=".csv" class="w3-input w3-border-0">
                                 <div class="w3-container w3-center">
-                                    <button id="uploadExamBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                                    <button id="uploadExamBtn" class="w3-button w3-round-xlarge">Upload</button>
                                 </div>
                                 <br>
                                 <h4 class="w3-center">-- OR --</h4>
@@ -129,7 +129,7 @@
                                 <label>File location (in case of multiple files seperate by semi-colon)</label>
                                 <input id="questionFileInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="G:\CoreData\example1.png, G:\CoreData\example2.png">
                                 <div class="w3-container w3-center">
-                                    <button id="uploadExamFormBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                                    <button id="uploadExamFormBtn" class="w3-button w3-round-xlarge">Upload</button>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                                 </div>
                                 <input id="userFileUpload" type="file" accept=".csv" class="w3-input w3-border-0">
                                 <div class="w3-container w3-center">
-                                    <button id="uploadUserBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                                    <button id="uploadUserBtn" class="w3-button w3-round-xlarge">Upload</button>
                                 </div>
                                 <br>
                                 <h4 class="w3-center">-- OR --</h4>
@@ -178,7 +178,7 @@
                                 <input type="radio" class="w3-radio" value="admin" name="adminCheck">
                                 <label>Admin user</label>
                                 <div class="w3-container w3-center">
-                                    <button id="uploadUserFormBtn" class="w3-button w3-border w3-border-black w3-round-xlarge">Upload</button>
+                                    <button id="uploadUserFormBtn" class="w3-button w3-round-xlarge">Upload</button>
                                 </div>
                             </div>
                         </div>

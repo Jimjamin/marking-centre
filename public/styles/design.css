@@ -1,4 +1,11 @@
 
+html {
+    height: 100%;
+    background: rgb(0,60,7);
+    background: linear-gradient(143deg, rgba(0,60,7,1) 7%, rgba(0,131,15,1) 33%, rgba(0,131,15,1) 100%);
+    background-attachment: fixed;
+    color: white !important;
+}
 #search {
     position: absolute;
     left: 32%;
@@ -11,6 +18,11 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
+    background: none;
+    color: white;
+}
+#searchBtn:hover {
+    background: none !important;
 }
 #searchColumn:hover {
     cursor: pointer;
@@ -33,9 +45,15 @@
     right: 1.5%;
     height: 60px;
     width: 60px;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
 }
 #profileIcon {
     height: 24px;
+}
+#profileDesc, #gradingForm, #uploadForm {
+    color: black;
 }
 .table-heading, .table-heading-2 {
     padding-left: 19%;
@@ -57,11 +75,17 @@
     width: 60%;
     left: 19%;
     overflow-x: auto;
+    border: 2px #003C07 solid;
+    background: lightgray;
+    color: black;
 }
 #logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn, #uploadExamFormBtn, #uploadUserFormBtn {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
 }
 #upload {
     position: absolute;
@@ -71,6 +95,12 @@
     width: 60px;
     top: 1.5%;
     right: calc(3% + 60px);
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
+}
+#upload:hover {
+    color: white !important;
 }
 #userUploadBody, #examUploadBody {
     display: none;
@@ -79,6 +109,9 @@
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
 }
 object {
     position: relative;
@@ -92,6 +125,9 @@ object {
     display: none;
     height: 60px;
     width: 60px;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
 }
 #commentBtn {
     position: absolute;
@@ -100,9 +136,12 @@ object {
     display: none;
     height: 60px;
     width: 60px;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
 }
 #commentBtnImg {
-    height: 28px;
+    height: 26px;
 }
 #backBtnImg {
     height: 24px;
