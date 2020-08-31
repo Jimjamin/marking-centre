@@ -22,16 +22,14 @@ exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, 
             `'${dataToUpload[rowsToInsert][4]}'`
         ];
     }
-    var uploadStatus;
     client.query(`INSERT INTO ${tableToInsertInto} (${columnsToInsertInto}) VALUES (${valuesToInsert})`, error => {
         if (error) {
             console.log("[FAILURE][UPLOAD] Upload to database has failed");
-            request.session.failedUploads++
-            uploadStatus = `${request.session.failedUploads} upload(s) failed, check your file for possible errors or contact support`;
-            console.log(uploadStatus);
+            request.session.failedUploads++;
+            request.session.uploadStatus = `${request.session.failedUploads} upload(s) failed, check your input for possible errors or contact support`;
+            request.session.save(err => { if (err) console.log("[FAILURE][RESOURCE] User data for recent upload has not saved correctly") });
         } else console.log("[SUCCESS][UPLOAD] User has submitted upload to database");
     })
-    return uploadStatus;
 }
 
 exports.uploadToDirectory = (fileLocation, fs) => {

@@ -25,7 +25,9 @@ const onRecordClick = (dataToDisplay, rowID) => {
             document.getElementById("backBtn").style.display = "block";
             document.getElementById("commentBtn").style.display = "block";
             document.getElementById("table").style.display = "none";
+            document.getElementById("activeJobsTable").style.border = "none";
             document.getElementById("tableGrade").style.display = "none";
+            document.getElementById("completedJobsTable").style.border = "none";
             for (let element of document.getElementsByClassName("table-heading")) element.style.display = "none";
             for (let element of document.getElementsByClassName("table-heading-2")) element.style.display = "none";
             document.getElementById("markingCentreDisplay").append(objectToDisplay);
@@ -68,10 +70,14 @@ const createTable = dataToDisplay => {
     }
     if (dataToDisplay.length > 0) {
         addingTable(tableToAppend, noGradeData);
+        document.getElementById("activeJobsTable").style.border = "2px #003C07 solid";
         addingTable(otherTableToAppend, gradeData);
+        document.getElementById("completedJobsTable").style.border = "2px #003C07 solid";
     } else {
         tableToAppend.innerHTML = "";
+        document.getElementById("activeJobsTable").style.border = "none";
         otherTableToAppend.innerHTML = "";
+        document.getElementById("completedJobsTable").style.border = "none";
     }
 }
 

@@ -45,11 +45,7 @@ exports.loadUserFile = (app, url, formidable, fs, csv) => {
     });
 }
 
-exports.displayUserFile = (app, path) => {
-    app.get('/upload/users', (request, result) => {
-        callDisplay(result, path);
-    });
-}
+exports.displayUserFile = (app, path) => { app.get('/upload/users', (request, result) => { callDisplay(result, path); }); }
 
 exports.loadExamFile = (app, url, formidable, fs, csv) => {
     app.post('/upload/exams', (request, result) => {
@@ -90,17 +86,14 @@ exports.loadExamFile = (app, url, formidable, fs, csv) => {
     });
 }
 
-exports.displayExamFile = (app, path) => {
-    app.get('/upload/exams', (request, result) => {
-        callDisplay(result, path);
-    });
-}
+exports.displayExamFile = (app, path) => { app.get('/upload/exams', (request, result) => { callDisplay(result, path); }); }
 
 exports.loadCurrentSession = app => app.get('/upload/confirm', (request, result) => result.send(request.session.uploadSession));
 
 exports.confirmUpload = (app, client) => {
     app.get('/upload/submit', (request, result) => {
         const dataToUpload = request.session.uploadSession;
+        request.session.failedUploads = 0;
         let tableToInsertInto, columnsToInsertInto;
         if (dataToUpload[0][0] === "Given name(s)") {
             tableToInsertInto = "staff";

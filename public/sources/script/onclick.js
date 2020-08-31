@@ -33,8 +33,10 @@ const addClickEventListeners = () => {
     formButtonEventListener();
     const activeJobs = document.getElementById("activeJobs");
     const completedJobs = document.getElementById("completedJobs");
+    const userList = document.getElementById("userTableHeading");
     activeJobs.addEventListener("click", () => showTable(activeJobs, document.getElementById("table")));
     completedJobs.addEventListener("click", () => showTable(completedJobs, document.getElementById("tableGrade")));
+    userList.addEventListener("click", () => showTable(userList, document.getElementById("userListProfile")));
 }
 
 export { addClickEventListeners }

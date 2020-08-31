@@ -1,4 +1,10 @@
 
+html {
+    height: 100%;
+    background: rgb(0,60,7);
+    background: linear-gradient(143deg, rgba(0,60,7,1) 7%, rgba(0,131,15,1) 33%, rgba(0,131,15,1) 100%);
+    background-attachment: fixed;
+}
 #body {
     position: absolute;
     width: 80%;
@@ -7,8 +13,13 @@
     left: 8%;
     padding: 16px;
     overflow-y: auto;
+    background: lightgray;
+    box-shadow: 0 0 20px 2px;
 }
 #confirmUploadBtn, #cancelUploadBtn {
     margin-top: 16px;
     width: 20%;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
 }

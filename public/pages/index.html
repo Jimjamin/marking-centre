@@ -8,23 +8,23 @@
         <meta name="keywords" content="Distributed Marking Program, DMP, Marking, Moderation, Queensland, Education">
         <meta name="author" content="Brisvegas Bois">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../styles/theme.css">
         <link rel="stylesheet" type="text/css" href="../styles/w3.css">
         <link rel="stylesheet" type="text/css" href="../styles/design.css">
-        <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="app">
             <div id="header" class="w3-container">
-                <div class="w3-center">
-                    <h1 id="title">Marking Centre Online</h1>
+                <div id="headerSearch">
+                    <div class="w3-center">
+                        <h1 id="title">Marking Centre Online</h1>
+                    </div>
+                    <input id="search" class="w3-input w3-round-xlarge" type="text" placeholder="Search through list of jobs...">
+                    <button id="searchBtn" type="submit" class="w3-button w3-round-xlarge w3-border-0"><img id="searchIcon"
+                            src="../images/searchBlk.png"></button>
+                    <select id="searchColumn" class="w3-select w3-border-0">
+                        <option value="selectAll" selected>Search All</option>
+                    </select>
                 </div>
-                <input id="search" class="w3-input w3-round-xlarge" type="text" placeholder="Search through list of jobs...">
-                <button id="searchBtn" type="submit" class="w3-button w3-round-xlarge w3-border-0"><img id="searchIcon"
-                        src="../images/searchBlk.png"></button>
-                <select id="searchColumn" class="w3-select w3-border-0">
-                    <option value="selectAll" selected>Search All</option>
-                </select>
                 <button id="profileBtn" class="w3-button w3-circle" onclick="document.getElementById('profileDesc').style.display='block'"><img id="profileIcon" src="../images/profile.png"></button>
                 <div id="profileDesc" class="w3-modal">
                     <div id="profileDescContent" class="w3-modal-content w3-animate-zoom w3-round-xlarge">
@@ -35,6 +35,11 @@
                         </div>
                         <div class="w3-container">
                             <p id="emailAddressProfile"></p>
+                            <div id="userListTable" class="w3-container">
+                                <h3 id="userTableHeading" class="table-heading">List of users &emsp;</h3>
+                                <table id="userListProfile" class="w3-table w3-center"></table>
+                                <br>
+                            </div>
                         </div>
                         <div class="w3-container w3-center">
                             <button id="logoffBtn" class="w3-button w3-round-xlarge">Logoff</button>
@@ -45,11 +50,16 @@
             </div>
             <br>
             <div id="tableBody" class="w3-container">
-                <h3 class="table-heading" id="activeJobs">Active jobs &emsp;</h3>
-                <table id="table" class="w3-table"></table>
                 <br>
-                <h3 class="table-heading" id="completedJobs">Completed jobs &emsp;</h3>
-                <table id="tableGrade" class="w3-table"></table>
+                <div id="activeJobsTable">
+                    <h3 class="table-heading" id="activeJobs">Active jobs &emsp;</h3>
+                    <table id="table" class="w3-table"></table>
+                </div>
+                <br>
+                <div id="completedJobsTable">
+                    <h3 class="table-heading" id="completedJobs">Completed jobs &emsp;</h3>
+                    <table id="tableGrade" class="w3-table"></table>
+                </div>
             </div>
             <br>
             <div id="body" class="w3-container">
