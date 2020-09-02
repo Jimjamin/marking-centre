@@ -14,7 +14,6 @@ const sortTable = index => {
     }
     window.sessionStorage.setItem("order", order);
     window.sessionStorage.setItem("index", index);
-    if (index === "email_address" || index === "first_name" || index === "last_name" || index === "is_admin") window.sessionStorage.setItem("isRootUsers", true)
     makeSearch();
 }
 
