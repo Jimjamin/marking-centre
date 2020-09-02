@@ -1,6 +1,8 @@
 
 "use strict"
 
+import { alertMessage } from './alert.js';
+
 const saveGrades = () => {
     const url = `${window.location.protocol}//${window.location.host}/grades`;
     const gradesToSave = new FormData();
@@ -17,10 +19,10 @@ const saveGrades = () => {
     fetch(url, method)
         .then(response => response.json())
         .then(response => {
-            alert(response.message);
+            alertMessage(response.message);
             document.getElementById("gradingForm").style.display = "none";
         })
-        .catch(error => alert(error.message))
+        .catch(error => alertMessage(error.message))
 }
 
 export { saveGrades }

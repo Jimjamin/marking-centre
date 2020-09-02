@@ -4,6 +4,7 @@
 import { buildList } from './../build/searchColumn.js';
 import { setupProfile } from './../build/profile.js';
 import { makeSearch } from '../modules/search.js';
+import { alertMessage } from '../build/alert.js';
 
 const documentSet = () => {
     buildList();
@@ -13,9 +14,9 @@ const documentSet = () => {
     setTimeout(() => {
         fetch(url)
             .then(response => response.json())
-            .then(response => { if (response.message) alert(response.message) })
-            .catch(error => alert(error.message))
-    }, 3000);
+            .then(response => { if (response.message) alertMessage(response.message) })
+            .catch(error => alertMessage(error.message))
+    }, 1000);
 }
 
 export { documentSet }

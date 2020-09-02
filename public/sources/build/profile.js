@@ -1,6 +1,8 @@
 
 "use strict";
 
+import { alertMessage } from './alert.js';
+
 const profileCreateTableHead = tableToAppend => {
     let headingRow = tableToAppend.insertRow(0);
     const headingCell = ["Email address", "Given name(s)", "Family name(s)", "Admin status"];
@@ -33,7 +35,7 @@ const setupProfile = () => {
     fetch(url)
         .then(response => response.json())
         .then(response => profileCreateTable(response))
-        .catch(error => alert(error.message))
+        .catch(error => alertMessage(error.message))
 }
 
 export { setupProfile }

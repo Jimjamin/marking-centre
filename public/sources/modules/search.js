@@ -2,6 +2,7 @@
 "use strict";
 
 import { createTable } from './table.js';
+import { alertMessage } from '../build/alert.js';
 
 /**
  * Checks to see if a non-null search has been made and updates the fetch URL respectively.
@@ -26,7 +27,7 @@ const makeSearch = () => {
     fetch(url)
         .then(response => response.json())
         .then(response => createTable(response))
-        .catch(error => alert(error.message))
+        .catch(error => alertMessage(error.message))
 }
 
 export { makeSearch }

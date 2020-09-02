@@ -102,7 +102,7 @@ table button:hover {
     overflow-x: auto;
     margin-bottom: 16px;
 }
-#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn, #uploadExamFormBtn, #uploadUserFormBtn {
+#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn, #uploadExamFormBtn, #uploadUserFormBtn, #alertCloseBtn {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;

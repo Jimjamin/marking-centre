@@ -1,6 +1,8 @@
 
 "use strict";
 
+import { alertMessage } from '../build/alert.js';
+
 const uploadFiles = (fileUploadInput, pathToUpload) => {
     const baseURL = `${window.location.protocol}//${window.location.host}`;
     const url = `${baseURL}${pathToUpload}?type=file`;
@@ -13,7 +15,7 @@ const uploadFiles = (fileUploadInput, pathToUpload) => {
     fetch(url, method)
         .then(response => response.json())
         .then(response => window.location.href = `${baseURL}${pathToUpload}`)
-        .catch(error => alert(error.message))
+        .catch(error => alertMessage(error.message))
 }
 
 const uploadForms = (formToUpload, pathToUpload) => {
@@ -26,7 +28,7 @@ const uploadForms = (formToUpload, pathToUpload) => {
     fetch(url, method)
         .then(response => response.json())
         .then(response => window.location.href = `${baseURL}${pathToUpload}`)
-        .catch(error => alert(error.message))
+        .catch(error => alertMessage(error.message))
 }
 
 const validateExamForm = () => {
