@@ -26,8 +26,10 @@ const onRecordClick = (dataToDisplay, rowID) => {
             document.getElementById("commentBtn").style.display = "block";
             document.getElementById("table").style.display = "none";
             document.getElementById("activeJobsTable").style.border = "none";
+            document.getElementById("activeJobsTable").style.boxShadow = "none";
             document.getElementById("tableGrade").style.display = "none";
             document.getElementById("completedJobsTable").style.border = "none";
+            document.getElementById("completedJobsTable").style.boxShadow = "none";
             for (let element of document.getElementsByClassName("table-heading")) element.style.display = "none";
             for (let element of document.getElementsByClassName("table-heading-2")) element.style.display = "none";
             document.getElementById("markingCentreDisplay").append(objectToDisplay);

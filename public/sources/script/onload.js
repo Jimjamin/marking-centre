@@ -7,8 +7,8 @@ import { makeSearch } from '../modules/search.js';
 
 const documentSet = () => {
     buildList();
-    setupProfile();
     makeSearch();
+    setupProfile();
     const url = `${window.location.protocol}//${window.location.host}/check?upload=true`;
     setTimeout(() => {
         fetch(url)

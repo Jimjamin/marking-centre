@@ -3,12 +3,8 @@
 
 const profileCreateTableHead = tableToAppend => {
     let headingRow = tableToAppend.insertRow(0);
-    const headingCell = ["Email address", "First name", "Last name", "Admin status"];
-    //const headingBtn = ["exam_id", "student_id", "question_number", "teacher_email"];
-    for (let cell in headingCell) {
-        headingRow.insertCell(cell).innerHTML = `<b>${headingCell[cell]}</b>`;
-        //appendSortBtn(headingRow, cell, headingBtn[cell]);
-    }
+    const headingCell = ["Email address", "Given name(s)", "Family name(s)", "Admin status"];
+    for (let cell in headingCell) headingRow.insertCell(cell).innerHTML = `<b>${headingCell[cell]}</b>`;
 }
 
 const profileCreateTableBody = (tableToAppend, dataToDisplay, rowID) => {

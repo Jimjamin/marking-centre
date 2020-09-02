@@ -29,8 +29,9 @@ exports.validateCriteria = (app, url, client) => {
             const userEmail = url.parse(request.url, true).query.email;
             search.emailValidation(userEmail, client, result, querySearch, queryColumn, true, querySortColumn, querySortOrder);
         } else {
-            request.session.reload(error => { if (error) console.log("[FAILURE][UPLOAD] Unable to track number of failed uploads") });
             result.send({ message: request.session.uploadStatus });
+            request.session.uploadStatus = "";
+            request.session.save(error => { if (error) console.log("[FAILURE][UPLOAD] Unable to track number of failed uploads") });
         }
     });
 }
@@ -44,4 +45,4 @@ exports.showExams = (app, url, client) => {
     });
 }
 
-exports.showUsers = (app, url, client) => { app.get('/users', (request, result) => { profile.emailValidation(url.parse(request.url, true).query.email, client, result) }) }
+exports.showUsers = (app, url, client) => { app.get('/users', (request, result) => { profile.emailValidation(url, request, client, result) }) }

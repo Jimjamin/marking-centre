@@ -15,10 +15,10 @@ exports.parse = (formidable, request, fs, csv, rowsOfData, result) => {
                 .on('error', error => console.log("[FAILURE][UPLOAD] User has not been able to upload CSV file"))
                 .on('data', rowData => {
                     if (rowsOfData[0][0] === "Student ID") {
-                        let filePaths = rowData[4].split(':\\').split('; ');
+                        let filePaths = rowData[4].split(':\\');
                         let listOfFileLocations = "";
                         for (let pathToFile = 1; pathToFile < filePaths.length; pathToFile++) {
-                            let filePathToSave = filePaths[pathToFile].split('; ')[1];
+                            let filePathToSave = filePaths[pathToFile].split('; ')[0];
                             listOfFileLocations += `${filePathToSave}; `;
                         }
                         rowsOfData.push({

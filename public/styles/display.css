@@ -7,12 +7,12 @@ html {
 }
 #body {
     position: absolute;
-    width: 80%;
+    max-width: 80%;
     max-height: 80%;
     top: 8%;
     left: 8%;
     padding: 16px;
-    overflow-y: auto;
+    overflow-x: auto;
     background: lightgray;
     box-shadow: 0 0 20px 2px;
 }
