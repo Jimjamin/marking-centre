@@ -9,6 +9,7 @@ const formidable = require('formidable');
 const url = require('url');
 const fs = require('fs');
 const csv = require('csv-parser');
+const bcrypt = require('bcrypt');
 const { Client } = require('pg')
 const client = new Client({
     connectionString: process.env.CONNECTION_STRING || process.env.DATABASE_URL,
@@ -30,20 +31,26 @@ app.use(session({
 }));
 
 login.openRoute(app, path);
-login.logonUser(app, formidable, client);
+login.logonUser(app, formidable, client, bcrypt);
+
+// Redirects user to login page if they are not logged in or their session has expired
 app.use((request, result, next) => {
     if (!request.session.userLoggedIn) result.redirect('/login');
     else next();
 });
+
 home.openRoute(app, path);
 home.validateCriteria(app, url, client);
 home.showExams(app, url, client);
 home.showUsers(app, url, client);
 home.deleteUsers(app, formidable, client);
+
+// Redirects user to home page automatically
 app.get('/', (request, result) => result.redirect('/home'));
-upload.loadUserFile(app, url, formidable, fs, csv);
+
+upload.loadUserFile(app, url, formidable, fs, csv, bcrypt);
 upload.displayUserFile(app, path);
-upload.loadExamFile(app, url, formidable, fs, csv);
+upload.loadExamFile(app, url, formidable, fs, csv, bcrypt);
 upload.displayExamFile(app, path);
 upload.loadCurrentSession(app);
 upload.confirmUpload(app, client);

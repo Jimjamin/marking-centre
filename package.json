@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Jimjamin/distributed-marking-es6#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "csv-parser": "^2.3.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

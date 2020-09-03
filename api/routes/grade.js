@@ -1,6 +1,13 @@
 
 "use strict";
 
+/**
+ * Allows for teacher to upload marks for exam question to database
+ * 
+ * @param {object} app - Express middleware for opening routes
+ * @param {object} formidable - Formidable middleware for processing user input
+ * @param {object} client - pSQL middleware for connecting to database
+ */
 exports.uploadTeacherGrade = (app, formidable, client) => {
     app.post('/grades', (request, result) => {
         const gradesToSave = formidable();
