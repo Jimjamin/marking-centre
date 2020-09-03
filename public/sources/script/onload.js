@@ -5,6 +5,7 @@ import { buildList } from './../build/searchColumn.js';
 import { setupProfile } from './../build/profile.js';
 import { makeSearch } from '../modules/search.js';
 import { alertMessage } from '../build/alert.js';
+import { checkForOfflineGrades } from '../build/recordBtn.js';
 
 const documentSet = () => {
     buildList();
@@ -17,6 +18,7 @@ const documentSet = () => {
             .then(response => { if (response.message) alertMessage(response.message) })
             .catch(error => alertMessage(error.message))
     }, 1000);
+    checkForOfflineGrades();
 }
 
 export { documentSet }

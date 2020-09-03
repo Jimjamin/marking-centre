@@ -33,15 +33,18 @@ exports.emailValidation = (userEmail, client, result, querySearch, queryColumn, 
     });
 }
 
-exports.executeSearch = (result, emailCheck, querySearch, queryColumn, client, querySortColumn, querySortOrder) => { 
+exports.executeSearch = (result, emailCheck, querySearch, queryColumn, client, querySortColumn, querySortOrder, examData) => { 
     let databaseQuery, orderQuery = `ORDER BY ${querySortColumn} ${querySortOrder}`;
     if (!querySortColumn) orderQuery = ``;
     if (queryColumn === "selectAll") {
         databaseQuery = `SELECT * FROM questions ${emailCheck} AND (CAST(student_id AS text) ILIKE '%${querySearch}%' OR CAST(exam_id AS text) ILIKE '%${querySearch}%' OR CAST(question_number AS text) ILIKE '%${querySearch}%' OR teacher_email ILIKE '%${querySearch}%') ${orderQuery}`;
     } else databaseQuery = `SELECT * FROM questions ${emailCheck} AND CAST(${queryColumn} AS text) ILIKE '%${querySearch}%' ${orderQuery}`;
     client.query(databaseQuery, (error, response) => {
-        if (error) console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed");
-        else {
+        if (error) { 
+            if (examData) result.send(examData);
+            console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed");
+        } else {
+            examData = response.rows;
             result.send(response.rows);
             console.log("[SUCCESS][SEARCH] Loading of exam jobs has worked");
         }

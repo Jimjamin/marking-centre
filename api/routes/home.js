@@ -14,6 +14,7 @@ const profile = require('./../middleware/profile.js');
 exports.openRoute = (app, path) => {
     app.get('/home', (request, result) => {
         if (request.session.uploadSession) request.session.uploadSession = "";
+        request.session.examData = "";
         result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
             if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
             else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
@@ -27,7 +28,7 @@ exports.validateCriteria = (app, url, client) => {
             let [querySearch, queryColumn] = search.querySearch(request, url);
             let [querySortColumn, querySortOrder] = search.querySort(request, url);
             const userEmail = url.parse(request.url, true).query.email;
-            search.emailValidation(userEmail, client, result, querySearch, queryColumn, true, querySortColumn, querySortOrder);
+            search.emailValidation(userEmail, client, result, querySearch, queryColumn, true, querySortColumn, querySortOrder, request.session.examData);
         } else {
             result.send({ message: request.session.uploadStatus });
             request.session.uploadStatus = "";
@@ -41,7 +42,7 @@ exports.showExams = (app, url, client) => {
         let [querySearch, queryColumn] = search.querySearch(request, url);
         let [querySortColumn, querySortOrder] = search.querySort(request, url);
         const userEmail = url.parse(request.url, true).query.email;
-        search.emailValidation(userEmail, client, result, querySearch, queryColumn, false, querySortColumn, querySortOrder);
+        search.emailValidation(userEmail, client, result, querySearch, queryColumn, false, querySortColumn, querySortOrder, request.session.examData);
     });
 }
 
