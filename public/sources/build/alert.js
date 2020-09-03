@@ -19,6 +19,7 @@ const alertMessage = message => {
     let buttonContainer = document.createElement("div");
     buttonContainer.classList.add("w3-container");
     buttonContainer.classList.add("w3-center");
+    buttonContainer.id = "buttonContainer";
     let closeButton = document.createElement("button");
     closeButton.innerHTML = "Okay";
     closeButton.addEventListener("click", () => modalContainer.remove());
@@ -37,4 +38,18 @@ const alertMessage = message => {
     document.getElementById("body").appendChild(modalContainer);
 }
 
-export { alertMessage }
+const promptMessage = (message, onConfirmFunction) => {
+    alertMessage(message);
+    document.getElementById("alertCloseBtn").innerHTML = "Confirm";
+    document.getElementById("alertCloseBtn").addEventListener("click", onConfirmFunction);
+    document.getElementById("alertCloseBtn").id = "confirmPromptBtn";
+    let cancelButton = document.createElement("button");
+    cancelButton.innerHTML = "Cancel";
+    cancelButton.addEventListener("click", () => document.getElementById("alertBox").remove());
+    cancelButton.classList.add("w3-button");
+    cancelButton.classList.add("w3-round-xlarge");
+    cancelButton.id = "cancelPromptBtn";
+    document.getElementById("buttonContainer").appendChild(cancelButton);
+}
+
+export { alertMessage, promptMessage }

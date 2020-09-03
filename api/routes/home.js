@@ -46,3 +46,5 @@ exports.showExams = (app, url, client) => {
 }
 
 exports.showUsers = (app, url, client) => { app.get('/users', (request, result) => { profile.emailValidation(url, request, client, result) }) }
+
+exports.deleteUsers = (app, formidable, client) => { app.post('/users', (request, result) => { profile.removeUser(client, formidable, request, result) }) }

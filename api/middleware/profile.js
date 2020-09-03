@@ -16,3 +16,16 @@ exports.emailValidation = (url, request, client, result) => {
         }
     });
 }
+
+exports.removeUser = (client, formidable, request, result) => {
+    const userToDelete = formidable();
+    userToDelete.parse(request, (error, fields) => {
+        if (error) console.log("[FAILURE][RESOURCE] Unable to delete user from system");
+        else {
+            client.query(`DELETE FROM staff WHERE email_address='${fields.email_address}'`, err => {
+                if (err) console.log("[FAILURE][RESOURCE] Unable to delete user from system");
+                else result.send({ message: `User ${fields.email_address} has been removed from the system` });
+            });
+        }
+    });
+}

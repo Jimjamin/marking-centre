@@ -1,7 +1,24 @@
 
 "use strict";
 
-import { alertMessage } from './alert.js';
+import { alertMessage, promptMessage } from './alert.js';
+
+const deleteUser = userRowToDelete => {
+    const url = `${window.location.protocol}//${window.location.host}/users`;
+    let userToDelete = new FormData();
+    userToDelete.append("email_address", userRowToDelete.cells[0].innerHTML);
+    const method = {
+        body: userToDelete,
+        method: "POST"
+    };
+    fetch(url, method)
+        .then(response => response.json())
+        .then(response => {
+            window.location.reload();
+            alertMessage(response.message);
+        })
+        .catch(error => alertMessage(error.message));
+}
 
 const profileCreateTableHead = tableToAppend => {
     let headingRow = tableToAppend.insertRow(0);
@@ -15,6 +32,8 @@ const profileCreateTableBody = (tableToAppend, dataToDisplay, rowID) => {
     bodyRow.insertCell(1).innerHTML = dataToDisplay[rowID].first_name;
     bodyRow.insertCell(2).innerHTML = dataToDisplay[rowID].last_name;
     bodyRow.insertCell(3).innerHTML = dataToDisplay[rowID].is_admin;
+    bodyRow.insertCell(4).innerHTML = "&times;";
+    bodyRow.cells[4].addEventListener("click", () => promptMessage("Are you sure you want to delete this user?", () => deleteUser(bodyRow)));
 }
 
 const profileCreateTable = dataToDisplay => {
@@ -22,7 +41,7 @@ const profileCreateTable = dataToDisplay => {
     if (dataToDisplay.length > 0) {
         profileCreateTableHead(tableToAppend);
         for (let rowID in dataToDisplay) profileCreateTableBody(tableToAppend, dataToDisplay, rowID);
-    }
+    } else document.getElementById("userTableHeading").remove();
 }
 
 /**

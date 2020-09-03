@@ -102,13 +102,22 @@ table button:hover {
     overflow-x: auto;
     margin-bottom: 16px;
 }
-#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn, #uploadExamFormBtn, #uploadUserFormBtn, #alertCloseBtn {
+#logoffBtn, #supportBtn, #uploadExamBtn, #uploadUserBtn, #uploadExamFormBtn, #uploadUserFormBtn {
     margin-top: 16px;
     margin-bottom: 16px;
     width: 20%;
     background-color: #003C07;
     color: white;
     border: 2px #003C07 solid;
+}
+#confirmPromptBtn, #cancelPromptBtn, #alertCloseBtn {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 20%;
+    background-color: #003C07;
+    color: white;
+    border: 2px #003C07 solid;
+    margin-left: 8px;
 }
 #upload {
     position: absolute;

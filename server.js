@@ -39,6 +39,7 @@ home.openRoute(app, path);
 home.validateCriteria(app, url, client);
 home.showExams(app, url, client);
 home.showUsers(app, url, client);
+home.deleteUsers(app, formidable, client);
 app.get('/', (request, result) => result.redirect('/home'));
 upload.loadUserFile(app, url, formidable, fs, csv);
 upload.displayUserFile(app, path);
