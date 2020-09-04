@@ -30,3 +30,6 @@ CREATE TABLE IF NOT EXISTS questions (
     comments text,
     PRIMARY KEY (question_number, exam_id, student_id, teacher_email)
 );
+
+INSERT INTO staff (email_address, first_name, is_admin, user_password)
+VALUES ('corinda@eq.edu.au', 'admin', 'true', '$2y$10$4MISg8Or8uH9Gi/V0V/A/ukQT1vRlxkdULeDhbOLlZY1gw6sGtWtW');
