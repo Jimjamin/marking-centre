@@ -42,7 +42,8 @@ const validateLogin = (client, fields, request, bcrypt, result, child) => {
                     result.redirect('/home');
                     console.log("[SUCCESS][LOGON] User has logged on");
                     let loadFiles = child.spawn('cmd.exe', ['/c', 'C:\\marking-centre\\exec\\load-files.bat']);
-                    loadFiles.stderr.on('data', error => console.log("[FAILURE][RESOURCE] Unable to download files from server"));
+                    loadFiles.on('error', e => console.log("[FAILURE][RESOURCE] Unable to download files from server"));
+                    loadFiles.stderr.on('data', e => console.log("[FAILURE][RESOURCE] Unable to download files from server"));
                     loadFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Downloaded files from server"));
                 } else {
                     console.log("[FAILURE][LOGON] User does not have correct credentials");
