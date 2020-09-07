@@ -5,11 +5,12 @@ nodeJS Application (Express)<br><br>
 
 In facilitating the eased workload for teaching staff, this application intends to create an environment where student exams can easily be accessed, shared, and managed into parts assigned to each teacher to mark. As an extension of this primary goal it will be possible to coordianate large group tasks such as moderation of student examination marking.
 
-Installing the application to your personal computer and installing the database on a central sever accessible by school staff (most likely G:\Coredata) will enable all intended functionality. Find the installation file for your OS below.
+Installing the application to your personal computer and installing the database on a central sever accessible by school staff (most likely G:\Coredata) will enable all intended functionality. Find the installation location at *URL to go here*.
 
-> Windows 7/8/10: *URL to go here*
+### Accessing files on your computer
+When the application has finished installing on your computer all source code will be found at D:\marking-centre including local copies of uploaded files found at D:\marking-centre\public\files for access in the application or when offline. If your computer is low on available space you may delete files from the D:\marking-centre\public\files directory, however, when you are next at school and logging into the application the files will automatically be redownloaded if they still exist in the directory G:\CoreData\applications\marking-centre where all server based copies of the files exist.
 
-> MacOS/Linux: *URL to go here*
+The directory G:\CoreData\applications\marking-centre will automatically detect any files uploaded by admin users and copy those files. If new files have been uploaded to the server every user will automatically download them when they next logon to the application (even if the files are not to be marked by said user). Deleting any files from this directory won't automatically delete the local files on the user's computer, but it will mean that if the user also deletes the same file they won't receive any more copies of said file from the server (as it is deleted from the server). If any accidental deletions have been made, you will need to refer to your school IT admin or other relevant person for the server backup as this application does not make any backups itself (to avoid overloading the server with thousands of pictures everywhere). 
 
 ### Navigating API routes of app
 To access the various API's of this application, guides can be found in this repository at *insert file URL here*. Keep in mind this file requires further functionality to process it and display it in a visual format. As such, if you are running the application on your computer, you can navigate to http://localhost:3000/docs to view this information.

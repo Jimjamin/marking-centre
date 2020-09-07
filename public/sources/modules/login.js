@@ -11,10 +11,7 @@ import { alertMessage } from '../build/alert.js';
 const validateLogin = () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    if (!email.includes("@eq.edu.au")) { 
-        alertMessage("You have not entered in a valid EQ email address");
-        return false;
-    } else if (password.length < 8) {
+    if (password.length < 8) {
         alertMessage("You have not entered in a valid password of suitable length");
         return false;
     }

@@ -106,7 +106,7 @@
                                     the database (keep in mind you should NOT include column headers in the CSV file). 
                                 </p>
                                 <p>
-                                    Don't worry though, if you make a mistake in formatting the records will not be uploaded and you will
+                                    Don't worry though, if you make a mistake in formatting, the records will not be uploaded and you will
                                     be informed of this error. If you have any unexpected troubles, contact support (your school MCO admin) when clicking
                                     on your profile in the top right-hand corner.
                                 </p>
@@ -115,6 +115,9 @@
                                         <p>STUDENT ID,EXAM ID,TEACHER EMAIL ADDRESS,QUESTION NUMBER,FILE LOCATIONS</p>
                                         <p>782201,0228,jsmit1@eq.edu.au,5,G:\CoreData\example1.png G:\CoreData\example2.png</p>
                                         <p>782201,0228,jsmit1@eq.edu.au,6,G:\CoreData\example3.png</p>
+                                        <p>290372,0228,edome52@eq.edu.au,5,G:\CoreData\edome52\Assessment\example1.png</p>
+                                        <p>782201,0228,edome52@eq.edu.au,5,G:\CoreData\edome52\Assessment\example2.png</p>
+                                        <p>782201,0228,edome52@eq.edu.au,1,G:\CoreData\example4.png</p>
                                     </div>
                                 </div>
                                 <input id="userExamUpload" type="file" accept=".csv" class="w3-input w3-border-0">
@@ -160,6 +163,8 @@
                                         <p>GIVEN NAMES,FAMILY NAMES,EMAIL ADDRESS,PASSWORD,PASSWORD CONFIRMATION,ADMIN STATUS</p>
                                         <p>John Steven,Smith,jsmit1@eq.edu.au,Password.1,Password.1,admin</p>
                                         <p>Jane Elizabeth,Smith,jsmit2@eq.edu.au,Password.1,Password.1,,</p>
+                                        <p>,,edome52@eq.edu.au,Password.1,Password.1,</p>
+                                        <p>Barry,,brodg79@eq.edu.au,Password.1,Password.1,</p>
                                     </div>
                                 </div>
                                 <input id="userFileUpload" type="file" accept=".csv" class="w3-input w3-border-0">
@@ -171,7 +176,7 @@
                                 <br>
                                 <p>
                                     If you wish to only register one new user at once, use the below form and assign them as an admin if you wish
-                                    them to be able to upload new records and register other user's themselves.
+                                    them to be able to upload new records and register other user's and upload exams themselves.
                                 </p>
                                 <label>Given name(s)</label>
                                 <input id="givenNameInput" type="text" class="w3-input w3-border w3-border-black w3-round-xlarge" placeholder="John">

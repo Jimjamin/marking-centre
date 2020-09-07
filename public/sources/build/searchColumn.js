@@ -6,7 +6,7 @@
  */
 const buildList = () => {
     let listToAppend = document.getElementById("searchColumn");
-    const listOptions = ["Student ID", "Exam ID", "Teacher email", "Question number"];
+    const listOptions = ["Student ID", "Exam ID", "Email", "Question #"];
     const listValues = ["student_id", "exam_id", "teacher_email", "question_number"];
     for (let option in listOptions) {
         let optionCell = document.createElement("option");

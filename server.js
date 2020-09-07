@@ -10,6 +10,7 @@ const url = require('url');
 const fs = require('fs');
 const csv = require('csv-parser');
 const bcrypt = require('bcrypt');
+const child = require('child_process');
 const { Client } = require('pg')
 const client = new Client({
     connectionString: process.env.CONNECTION_STRING || process.env.DATABASE_URL,
@@ -31,7 +32,7 @@ app.use(session({
 }));
 
 login.openRoute(app, path);
-login.logonUser(app, formidable, client, bcrypt);
+login.logonUser(app, formidable, client, bcrypt, child);
 
 // Redirects user to login page if they are not logged in or their session has expired
 app.use((request, result, next) => {
@@ -53,7 +54,7 @@ upload.displayUserFile(app, path);
 upload.loadExamFile(app, url, formidable, fs, csv, bcrypt);
 upload.displayExamFile(app, path);
 upload.loadCurrentSession(app);
-upload.confirmUpload(app, client);
+upload.confirmUpload(app, client, child);
 grade.uploadTeacherGrade(app, formidable, client);
 
 app.listen(process.env.PORT || 3000, () => console.log("[SUCCESS][SERVER] Server is listening on port 3000"));

@@ -41,8 +41,6 @@ const validateExamForm = () => {
 }
 
 const validateUserForm = () => {
-    if (!document.getElementById("givenNameInput").value) return false;
-    if (!document.getElementById("familyNameInput").value) return false;
     if (!document.getElementById("emailAddressInput").value) return false;
     if (document.getElementById("passwordInput").length < 8) return false;
     if (document.getElementById("passwordConfirmInput").value !== document.getElementById("passwordInput").value) return false;

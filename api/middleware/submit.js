@@ -14,7 +14,7 @@
 exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request) => {
     let valuesToInsert;
     if (dataToUpload[rowsToInsert][4] === "admin") dataToUpload[rowsToInsert][4] = true;
-    else dataToUpload[rowsToInsert][4] = false;
+    else if (!dataToUpload[rowsToInsert][4]) dataToUpload[rowsToInsert][4] = false;
     valuesToInsert = [
         `'${dataToUpload[rowsToInsert][0]}'`,
         `'${dataToUpload[rowsToInsert][1]}'`,

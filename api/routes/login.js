@@ -27,23 +27,30 @@ exports.openRoute = (app, path) => {
  * @param {object} bcrypt - Allows for password hashing and decrypting
  * @param {object} result - Returns a result to user
  */
-const validateLogin = (client, fields, request, bcrypt, result) => {
+const validateLogin = (client, fields, request, bcrypt, result, child) => {
     client.query(`SELECT * FROM staff WHERE email_address='${fields.email}'`, (error, response) => {
         if (error) console.log("[FAILURE][LOGON] User has been unable to logon due to not already having an account"); 
         else if (response.rows.length > 0) {
-            bcrypt.compare(fields.password, response.rows[0].user_password, err => {
+            bcrypt.compare(fields.password, response.rows[0].user_password, (err, res) => {
                 if (err) { 
-                    console.log("[FAILURE][LOGON] User's password is incorrect");
+                    console.log("[FAILURE][LOGON] Login service is unavailable");
                     result.redirect('/login');
-                } else {
+                } 
+                if (res) {
                     request.session.userLoggedIn = true;
                     request.session.userEmail = fields.email;
                     result.redirect('/home');
                     console.log("[SUCCESS][LOGON] User has logged on");
+                    let loadFiles = child.spawn('cmd.exe', ['/c', 'C:\\marking-centre\\exec\\load-files.bat']);
+                    loadFiles.stderr.on('data', error => console.log("[FAILURE][RESOURCE] Unable to download files from server"));
+                    loadFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Downloaded files from server"));
+                } else {
+                    console.log("[FAILURE][LOGON] User does not have correct credentials");
+                    result.redirect('/login');
                 }
             });
-        } else {
-            console.log("[FAILURE][LOGON] User does not have an account");
+        } else { 
+            console.log("[FAILURE][LOGON] User does not have correct credentials");
             result.redirect('/login');
         }
     });
@@ -57,12 +64,12 @@ const validateLogin = (client, fields, request, bcrypt, result) => {
  * @param {object} client - pSQL middleware for connecting to database
  * @param {object} bcrypt - Allows for password hashing and decrypting
  */
-exports.logonUser = (app, formidable, client, bcrypt) => {
+exports.logonUser = (app, formidable, client, bcrypt, child) => {
     app.post('/login', (request, result) => {
         const loginForm = formidable();
         loginForm.parse(request, (error, fields) => {
             if (error) console.log("[FAILURE][LOGON] User has been unable to logon due to server error that has not been caught"); 
-            else validateLogin(client, fields, request, bcrypt, result);
+            else validateLogin(client, fields, request, bcrypt, result, child);
         });
     });
 }

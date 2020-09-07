@@ -142,7 +142,7 @@ exports.loadCurrentSession = app => app.get('/upload/confirm', (request, result)
  * @param {object} app - Middleware for opening routes
  * @param {object} client - Allows for connection to database
  */
-exports.confirmUpload = (app, client) => {
+exports.confirmUpload = (app, client, child) => {
     app.get('/upload/submit', (request, result) => {
         const dataToUpload = request.session.uploadSession;
         request.session.failedUploads = 0;
@@ -157,5 +157,8 @@ exports.confirmUpload = (app, client) => {
         dataToUpload.shift();
         for (let rowsToInsert in dataToUpload) submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request);
         result.send({ message: "Records have been uploaded to database" });
+        let serveFiles = child.spawn('cmd.exe', ['/c', 'C:\\marking-centre\\exec\\serve-files.bat']);
+        serveFiles.stderr.on('data', error => console.log("[FAILURE][RESOURCE] Unable to upload files to server"));
+        serveFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Uploaded files to server"));
     })
 }
