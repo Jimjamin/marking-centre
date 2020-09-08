@@ -158,7 +158,7 @@ exports.confirmUpload = (app, client, child) => {
         for (let rowsToInsert in dataToUpload) submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request);
         result.send({ message: "Records have been uploaded to database" });
         let serveFiles = child.spawn('cmd.exe', ['/c', 'C:\\marking-centre\\exec\\serve-files.bat']);
-        loadFiles.on('error', e => console.log("[FAILURE][RESOURCE] Unable to upload files to server"));
+        serveFiles.on('error', e => console.log("[FAILURE][RESOURCE] Unable to upload files to server"));
         serveFiles.stderr.on('data', error => console.log("[FAILURE][RESOURCE] Unable to upload files to server"));
         serveFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Uploaded files to server"));
     })

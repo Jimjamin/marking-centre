@@ -55,23 +55,31 @@ exports.openRoute = (app, path) => {
  * @param {object} bcrypt - Allows for password hashing and decrypting
  * @param {object} result - Returns a result to user
  */
-const validateLogin = (client, fields, request, bcrypt, result) => {
+const validateLogin = (client, fields, request, bcrypt, result, child) => {
     client.query(`SELECT * FROM staff WHERE email_address='${fields.email}'`, (error, response) => {
         if (error) console.log("[FAILURE][LOGON] User has been unable to logon due to not already having an account"); 
         else if (response.rows.length > 0) {
-            bcrypt.compare(fields.password, response.rows[0].user_password, err => {
+            bcrypt.compare(fields.password, response.rows[0].user_password, (err, res) => {
                 if (err) { 
-                    console.log("[FAILURE][LOGON] User's password is incorrect");
+                    console.log("[FAILURE][LOGON] Login service is unavailable");
                     result.redirect('/login');
-                } else {
+                } 
+                if (res) {
                     request.session.userLoggedIn = true;
                     request.session.userEmail = fields.email;
                     result.redirect('/home');
                     console.log("[SUCCESS][LOGON] User has logged on");
+                    let loadFiles = child.spawn('cmd.exe', ['/c', 'C:\\marking-centre\\exec\\load-files.bat']);
+                    loadFiles.on('error', e => console.log("[FAILURE][RESOURCE] Unable to download files from server"));
+                    loadFiles.stderr.on('data', e => console.log("[FAILURE][RESOURCE] Unable to download files from server"));
+                    loadFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Downloaded files from server"));
+                } else {
+                    console.log("[FAILURE][LOGON] User does not have correct credentials");
+                    result.redirect('/login');
                 }
             });
-        } else {
-            console.log("[FAILURE][LOGON] User does not have an account");
+        } else { 
+            console.log("[FAILURE][LOGON] User does not have correct credentials");
             result.redirect('/login');
         }
     });
@@ -85,12 +93,12 @@ const validateLogin = (client, fields, request, bcrypt, result) => {
  * @param {object} client - pSQL middleware for connecting to database
  * @param {object} bcrypt - Allows for password hashing and decrypting
  */
-exports.logonUser = (app, formidable, client, bcrypt) => {
+exports.logonUser = (app, formidable, client, bcrypt, child) => {
     app.post('/login', (request, result) => {
         const loginForm = formidable();
         loginForm.parse(request, (error, fields) => {
             if (error) console.log("[FAILURE][LOGON] User has been unable to logon due to server error that has not been caught"); 
-            else validateLogin(client, fields, request, bcrypt, result);
+            else validateLogin(client, fields, request, bcrypt, result, child);
         });
     });
 }
@@ -104,13 +112,13 @@ exports.logonUser = (app, formidable, client, bcrypt) => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#callDisplay">callDisplay</a></li><li><a href="global.html#confirmUpload">confirmUpload</a></li><li><a href="global.html#deleteUsers">deleteUsers</a></li><li><a href="global.html#displayExamFile">displayExamFile</a></li><li><a href="global.html#displayUserFile">displayUserFile</a></li><li><a href="global.html#emailValidation">emailValidation</a></li><li><a href="global.html#executeSearch">executeSearch</a></li><li><a href="global.html#loadCurrentSession">loadCurrentSession</a></li><li><a href="global.html#loadExamFile">loadExamFile</a></li><li><a href="global.html#loadUserFile">loadUserFile</a></li><li><a href="global.html#logonUser">logonUser</a></li><li><a href="global.html#openRoute">openRoute</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#passwordHashingAsync">passwordHashingAsync</a></li><li><a href="global.html#querySearch">querySearch</a></li><li><a href="global.html#querySort">querySort</a></li><li><a href="global.html#removeUser">removeUser</a></li><li><a href="global.html#showExams">showExams</a></li><li><a href="global.html#showUsers">showUsers</a></li><li><a href="global.html#uploadTeacherGrade">uploadTeacherGrade</a></li><li><a href="global.html#uploadToDirectory">uploadToDirectory</a></li><li><a href="global.html#uploadToTable">uploadToTable</a></li><li><a href="global.html#validateCriteria">validateCriteria</a></li><li><a href="global.html#validateLogin">validateLogin</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#callDisplay">callDisplay</a></li><li><a href="global.html#confirmUpload">confirmUpload</a></li><li><a href="global.html#deleteUsers">deleteUsers</a></li><li><a href="global.html#displayExamFile">displayExamFile</a></li><li><a href="global.html#displayUserFile">displayUserFile</a></li><li><a href="global.html#emailValidation">emailValidation</a></li><li><a href="global.html#executeSearch">executeSearch</a></li><li><a href="global.html#loadCurrentSession">loadCurrentSession</a></li><li><a href="global.html#loadExamFile">loadExamFile</a></li><li><a href="global.html#loadUserFile">loadUserFile</a></li><li><a href="global.html#logonUser">logonUser</a></li><li><a href="global.html#openRoute">openRoute</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#querySearch">querySearch</a></li><li><a href="global.html#querySort">querySort</a></li><li><a href="global.html#removeUser">removeUser</a></li><li><a href="global.html#showExams">showExams</a></li><li><a href="global.html#showUsers">showUsers</a></li><li><a href="global.html#uploadTeacherGrade">uploadTeacherGrade</a></li><li><a href="global.html#uploadToDirectory">uploadToDirectory</a></li><li><a href="global.html#uploadToTable">uploadToTable</a></li><li><a href="global.html#validateCriteria">validateCriteria</a></li><li><a href="global.html#validateLogin">validateLogin</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Thu Sep 03 2020 22:50:22 GMT+1000 (Australian Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 08 2020 10:59:05 GMT+1000 (Australian Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -6,6 +6,8 @@ import { alertMessage } from '../build/alert.js';
 
 /**
  * Checks to see if a non-null search has been made and updates the fetch URL respectively.
+ * 
+ * @returns {string} Server API to call for requested search from client
  */
 const updateSearch = () => {
     let url = `${window.location.protocol}//${window.location.host}/exams?email=${localStorage.getItem("userEmail")}`;

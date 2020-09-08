@@ -3,6 +3,12 @@
 
 import { alertMessage } from '../build/alert.js';
 
+/**
+ * Uploads CSV file to server to be handled there
+ * 
+ * @param {object} fileUploadInput - File to be uploaded
+ * @param {string} pathToUpload - Server API to call for uploaded file
+ */
 const uploadFiles = (fileUploadInput, pathToUpload) => {
     const baseURL = `${window.location.protocol}//${window.location.host}`;
     const url = `${baseURL}${pathToUpload}?type=file`;
@@ -18,6 +24,12 @@ const uploadFiles = (fileUploadInput, pathToUpload) => {
         .catch(error => alertMessage(error.message))
 }
 
+/**
+ * Allows for the uploading of a form to the server (no CSV file)
+ * 
+ * @param {object} formToUpload - Form containing all field data to be POSTed to server
+ * @param {string} pathToUpload - Server API to call for uploading of data
+ */
 const uploadForms = (formToUpload, pathToUpload) => {
     const baseURL = `${window.location.protocol}//${window.location.host}`;
     const url = `${baseURL}${pathToUpload}?type=form`;
@@ -31,6 +43,11 @@ const uploadForms = (formToUpload, pathToUpload) => {
         .catch(error => alertMessage(error.message))
 }
 
+/**
+ * Validates that the exam form is in correct form
+ * 
+ * @returns {boolean} If the exam form is valid
+ */
 const validateExamForm = () => {
     if (!document.getElementById("studentIDInput").value) return false;
     if (!document.getElementById("examIDInput").value) return false;
@@ -40,6 +57,11 @@ const validateExamForm = () => {
     return true;
 }
 
+/**
+ * Validates that the user form is in correct form
+ *
+ * @returns {boolean} If the user form is valid
+ */
 const validateUserForm = () => {
     if (!document.getElementById("emailAddressInput").value) return false;
     if (document.getElementById("passwordInput").length < 8) return false;
@@ -47,13 +69,26 @@ const validateUserForm = () => {
     return true;
 }
 
+/**
+ * Checks for the value of the admin radio buttons in the user form
+ * 
+ * @returns {string} Value of the checked admin radio button in said form
+ */
 const checkForAdminStatus = () => {
     const radioBtnList = document.getElementsByName("adminCheck");
     for (let radioBtn in radioBtnList) if (radioBtnList[radioBtn].checked) return radioBtnList[radioBtn].value;
 }
 
+/**
+ * If exam upload is in the style of a form (not a CSV) upload to server with this function
+ * 
+ * @param {string} pathToUpload - Server API to call for uploading exam form
+ */
 const uploadExamForm = pathToUpload => {
-    if (!validateExamForm()) return;
+    if (!validateExamForm()) {
+        alertMessage("You have an error in your upload");
+        return;
+    }
     let formToUpload = new FormData();
     formToUpload.append("studentID", document.getElementById("studentIDInput").value);
     formToUpload.append("examID", document.getElementById("examIDInput").value);
@@ -63,6 +98,9 @@ const uploadExamForm = pathToUpload => {
     uploadForms(formToUpload, pathToUpload);
 }
 
+/**
+ * If exam upload is in CSV format upload to server with this function
+ */
 const uploadExam = () => {
     const csvExists = document.getElementById("userExamUpload").files.length > 0;
     const pathToUpload = "/upload/exams";
@@ -72,8 +110,16 @@ const uploadExam = () => {
     } else uploadExamForm(pathToUpload);
 }
 
+/**
+ * If user upload is in the style of a form (not a CSV) upload to server with this function
+ *
+ * @param {string} pathToUpload - Server API to call for uploading user form
+ */
 const uploadUserForm = pathToUpload => {
-    if (!validateUserForm()) return;
+    if (!validateUserForm()) {
+        alertMessage("You have an error in your upload");
+        return;
+    }
     let formToUpload = new FormData();
     formToUpload.append("givenName", document.getElementById("givenNameInput").value);
     formToUpload.append("familyName", document.getElementById("familyNameInput").value);
@@ -85,6 +131,9 @@ const uploadUserForm = pathToUpload => {
     uploadForms(formToUpload, pathToUpload);
 }
 
+/**
+ * If user upload is in CSV format upload to server with this function
+ */
 const uploadUser = () => {
     const csvExists = document.getElementById("userFileUpload").files.length > 0;
     const pathToUpload = "/upload/users";
