@@ -3,6 +3,9 @@
 
 import { alertMessage } from './alert.js';
 
+/**
+ * Allows user to save the current grades and comments for said exam
+ */
 const saveGrades = () => {
     const url = `${window.location.protocol}//${window.location.host}/grades`;
     let gradesToSave = new FormData();
@@ -26,6 +29,9 @@ const saveGrades = () => {
         .catch(error => alertMessage(error.message))
 }
 
+/**
+ * Checks if the user has saved any grades in offline mode previously
+ */
 const checkForOfflineGrades = () => {
     if (window.sessionStorage.getItem("grade")) {
         let gradesToSave = window.sessionStorage.getItem("grade").split(';;;');

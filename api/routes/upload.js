@@ -34,7 +34,7 @@ exports.loadUserFile = (app, url, formidable, fs, csv, bcrypt) => {
             0: "Given name(s)",
             1: "Family name(s)",
             2: "Email address",
-            3: "Password",
+            3: "Password (encrypted for your privacy)",
             4: "Admin status"
         }];
         if (typeOfUpload === "file") csvUpload.parse(formidable, request, fs, csv, userDataRows, bcrypt, result);

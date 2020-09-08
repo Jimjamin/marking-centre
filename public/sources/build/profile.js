@@ -3,6 +3,11 @@
 
 import { alertMessage, promptMessage } from './alert.js';
 
+/**
+ * Deletes specified user from the database
+ * 
+ * @param {object} userRowToDelete - Current row of the user to be deleted from records
+ */
 const deleteUser = userRowToDelete => {
     const url = `${window.location.protocol}//${window.location.host}/users`;
     let userToDelete = new FormData();
@@ -20,12 +25,24 @@ const deleteUser = userRowToDelete => {
         .catch(error => alertMessage(error.message));
 }
 
+/**
+ * Creates heading for user profile table
+ * 
+ * @param {object} tableToAppend - Table to display data in
+ */
 const profileCreateTableHead = tableToAppend => {
     let headingRow = tableToAppend.insertRow(0);
     const headingCell = ["Email address", "Given name(s)", "Family name(s)", "Admin status"];
     for (let cell in headingCell) headingRow.insertCell(cell).innerHTML = `<b>${headingCell[cell]}</b>`;
 }
 
+/**
+ * Creates a new row of data to append to user profile table
+ * 
+ * @param {object} tableToAppend - Table to display data in
+ * @param {object} dataToDisplay - List of data to display in said table
+ * @param {number} rowID - Current row to be inserted into table
+ */
 const profileCreateTableBody = (tableToAppend, dataToDisplay, rowID) => {
     let bodyRow = tableToAppend.insertRow(1)
     bodyRow.insertCell(0).innerHTML = dataToDisplay[rowID].email_address;
@@ -33,9 +50,16 @@ const profileCreateTableBody = (tableToAppend, dataToDisplay, rowID) => {
     bodyRow.insertCell(2).innerHTML = dataToDisplay[rowID].last_name;
     bodyRow.insertCell(3).innerHTML = dataToDisplay[rowID].is_admin;
     bodyRow.insertCell(4).innerHTML = "&times;";
+
+    // Adds the ability to delete a user
     bodyRow.cells[4].addEventListener("click", () => promptMessage("Are you sure you want to delete this user?", () => deleteUser(bodyRow)));
 }
 
+/**
+ * Creates profile table to display all current users for an admin user to see
+ * 
+ * @param {object} dataToDisplay - List of data to display in table 
+ */
 const profileCreateTable = dataToDisplay => {
     const tableToAppend = document.getElementById("userListProfile");
     if (dataToDisplay.length > 0) {
