@@ -17,7 +17,7 @@ const submit = require('./submit.js');
 exports.parse = (formidable, request, fs, csv, rowsOfData, bcrypt, result) => {
     const uploadUserForm = formidable();
     uploadUserForm.parse(request, (error, fields, files) => {
-        if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload CSV file");
+        if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload CSV file\r\n");
         else {
             new Promise((resolve, reject) => {
                 let hashPromises = [];
@@ -26,7 +26,7 @@ exports.parse = (formidable, request, fs, csv, rowsOfData, bcrypt, result) => {
                         headers: false,
                     }))
                     .on('error', error => {
-                        console.log("[FAILURE][UPLOAD] User has not been able to upload CSV file");
+                        console.log("[FAILURE][UPLOAD] User has not been able to upload CSV file\r\n");
                         reject();
                     })
                     .on('data', rowData => {
@@ -49,7 +49,7 @@ exports.parse = (formidable, request, fs, csv, rowsOfData, bcrypt, result) => {
                             hashPromises.push(new Promise((resolve, reject) => {
                                 bcrypt.hash(rowData[3], 10, (err, hash) => {
                                     if (err) {
-                                        console.log("[FAILURE][UPLOAD] Server has been unable to hash password");
+                                        console.log("[FAILURE][UPLOAD] Server has been unable to hash password\r\n");
                                         reject();
                                     } else {
                                         rowsOfData.push({
@@ -68,7 +68,7 @@ exports.parse = (formidable, request, fs, csv, rowsOfData, bcrypt, result) => {
                     .on('end', async () => {
                         await Promise.all(hashPromises);
                         request.session.uploadSession = rowsOfData;
-                        console.log("[SUCCESS][UPLOAD] User has uploaded CSV file");
+                        console.log("[SUCCESS][UPLOAD] User has uploaded CSV file\r\n");
                         result.send({ message: "File has uploaded successfully" });
                         resolve();
                     })

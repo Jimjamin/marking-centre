@@ -12,13 +12,13 @@
 exports.emailValidation = (url, request, client, result) => {
     const userEmail = url.parse(request.url, true).query.email;
     client.query(`SELECT * FROM staff WHERE email_address='${userEmail}' AND is_admin=true`, (error, response) => {
-        if (error) console.log("[FAILURE][SEARCH] Checking for user email address has failed");
+        if (error) console.log("[FAILURE][SEARCH] Checking for user email address has failed\r\n");
         else if (response.rows.length > 0) {
             client.query('SELECT * FROM staff', (err, response) => {
-                if (err) console.log("[FAILURE][SEARCH] Loading of user profiles has failed");
+                if (err) console.log("[FAILURE][SEARCH] Loading of user profiles has failed\r\n");
                 else {
                     result.send(response.rows);
-                    console.log("[SUCCESS][SEARCH] User profiles have been loaded without error");
+                    console.log("[SUCCESS][SEARCH] User profiles have been loaded without error\r\n");
                 }
             });
         }
@@ -36,10 +36,10 @@ exports.emailValidation = (url, request, client, result) => {
 exports.removeUser = (client, formidable, request, result) => {
     const userToDelete = formidable();
     userToDelete.parse(request, (error, fields) => {
-        if (error) console.log("[FAILURE][RESOURCE] Unable to delete user from system");
+        if (error) console.log("[FAILURE][RESOURCE] Unable to delete user from system\r\n");
         else {
             client.query(`DELETE FROM staff WHERE email_address='${fields.email_address}'`, err => {
-                if (err) console.log("[FAILURE][RESOURCE] Unable to delete user from system");
+                if (err) console.log("[FAILURE][RESOURCE] Unable to delete user from system\r\n");
                 else result.send({ message: `User ${fields.email_address} has been removed from the system` });
             });
         }

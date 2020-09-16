@@ -23,6 +23,7 @@ const home = require('./api/routes/home.js');
 const login = require('./api/routes/login.js');
 const upload = require('./api/routes/upload.js');
 const grade = require('./api/routes/grade.js');
+const install = require('./api/routes/install.js');
 
 app.use(express.static(path.join(__dirname, process.env.STATIC || 'public/')));
 app.use(session({
@@ -39,6 +40,9 @@ app.use((request, result, next) => {
     if (!request.session.userLoggedIn) result.redirect('/login');
     else next();
 });
+
+install.displayInstall(app, path);
+install.downloadFile(app);
 
 home.openRoute(app, path);
 home.validateCriteria(app, url, client);
@@ -57,4 +61,4 @@ upload.loadCurrentSession(app);
 upload.confirmUpload(app, client, child);
 grade.uploadTeacherGrade(app, formidable, client);
 
-app.listen(process.env.PORT || 3000, () => console.log("[SUCCESS][SERVER] Server is listening on port 3000"));
+app.listen(process.env.PORT || 3000, () => console.log("[SUCCESS][SERVER] Server is listening on port 3000\r\n"));

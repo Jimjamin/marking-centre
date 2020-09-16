@@ -41,7 +41,7 @@ exports.querySort = (request, url) => {
  */
 exports.emailValidation = (userEmail, client, result, querySearch, queryColumn, skipSearch, querySortColumn, querySortOrder) => {
     client.query(`SELECT * FROM staff WHERE email_address='${userEmail}' AND is_admin=true`, (error, response) => {
-        if (error) console.log("[FAILURE][SEARCH] Checking for user email address has failed");
+        if (error) console.log("[FAILURE][SEARCH] Checking for user email address has failed\r\n");
         else if (response.rows.length > 0) {
             if (!skipSearch) this.executeSearch(result, "WHERE teacher_email ILIKE '%'", querySearch, queryColumn, client, querySortColumn, querySortOrder);
             else result.send({ admin: true });
@@ -73,11 +73,11 @@ exports.executeSearch = (result, emailCheck, querySearch, queryColumn, client, q
     client.query(databaseQuery, (error, response) => {
         if (error) { 
             if (examData) result.send(examData);
-            console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed");
+            console.log("[FAILURE][SEARCH] Loading of exam jobs for user has failed\r\n");
         } else {
             examData = response.rows;
             result.send(response.rows);
-            console.log("[SUCCESS][SEARCH] Loading of exam jobs has worked");
+            console.log("[SUCCESS][SEARCH] Loading of exam jobs has worked\r\n");
         }
     });
 }

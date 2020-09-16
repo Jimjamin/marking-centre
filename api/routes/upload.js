@@ -12,8 +12,8 @@ const submit = require('./../middleware/submit.js');
  */
 const callDisplay = (result, path) => {
     result.sendFile(path.join(__dirname, '../../public/pages/', 'display.html'), error => {
-        if (error) console.log("[FAILURE][RESOURCE] User has not received 'display.html'");
-        else console.log("[SUCCESS][RESOURCE] User has received 'display.html'");
+        if (error) console.log("[FAILURE][RESOURCE] User has not received 'display.html'\r\n");
+        else console.log("[SUCCESS][RESOURCE] User has received 'display.html'\r\n");
     });
 }
 
@@ -41,10 +41,10 @@ exports.loadUserFile = (app, url, formidable, fs, csv, bcrypt) => {
         else {
             const uploadUserForm = formidable();
             uploadUserForm.parse(request, (error, fields) => {
-                if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload form");
+                if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload form\r\n");
                 else {
                     bcrypt.hash(fields.password, 10, (err, hash) => {
-                        if (err) console.log("[FAILURE][UPLOAD] Server has been unable to hash password");
+                        if (err) console.log("[FAILURE][UPLOAD] Server has been unable to hash password\r\n");
                         else {
                             userDataRows.push({
                                 0: fields.givenName,
@@ -54,7 +54,7 @@ exports.loadUserFile = (app, url, formidable, fs, csv, bcrypt) => {
                                 4: fields.isAdmin
                             });
                             request.session.uploadSession = userDataRows;
-                            console.log("[SUCCESS][UPLOAD] User has uploaded form");
+                            console.log("[SUCCESS][UPLOAD] User has uploaded form\r\n");
                             result.send({ message: "File has uploaded successfully" });
                         }
                     });
@@ -96,7 +96,7 @@ exports.loadExamFile = (app, url, formidable, fs, csv, bcrypt) => {
         else {
             const uploadUserForm = formidable();
             uploadUserForm.parse(request, (error, fields) => {
-                if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload form");
+                if (error) console.log("[FAILURE][UPLOAD] User has not been able to upload form\r\n");
                 else {
                     let filePaths = fields.fileLocation.split(':\\');
                     let listOfFileLocations = "";
@@ -112,7 +112,7 @@ exports.loadExamFile = (app, url, formidable, fs, csv, bcrypt) => {
                         4: listOfFileLocations
                     });
                     request.session.uploadSession = examDataRows;
-                    console.log("[SUCCESS][UPLOAD] User has uploaded form");
+                    console.log("[SUCCESS][UPLOAD] User has uploaded form\r\n");
                     result.send({ message: "File has uploaded successfully" });
                     submit.uploadToDirectory(fields.fileLocation, fs);
                 }
@@ -158,8 +158,8 @@ exports.confirmUpload = (app, client, child) => {
         for (let rowsToInsert in dataToUpload) submit.uploadToTable(dataToUpload, rowsToInsert, client, tableToInsertInto, columnsToInsertInto, request);
         result.send({ message: "Records have been uploaded to database" });
         let serveFiles = child.spawn('cmd.exe', ['/c', 'C:\\marking-centre\\exec\\serve-files.bat']);
-        serveFiles.on('error', e => console.log("[FAILURE][RESOURCE] Unable to upload files to server"));
-        serveFiles.stderr.on('data', error => console.log("[FAILURE][RESOURCE] Unable to upload files to server"));
-        serveFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Uploaded files to server"));
+        serveFiles.on('error', e => console.log("[FAILURE][RESOURCE] Unable to upload files to server\r\n"));
+        serveFiles.stderr.on('data', error => console.log("[FAILURE][RESOURCE] Unable to upload files to server\r\n"));
+        serveFiles.on('exit', response => console.log("[SUCCESS][RESOURCE] Uploaded files to server\r\n"));
     })
 }

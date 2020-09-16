@@ -27,8 +27,8 @@ exports.uploadToTable = (dataToUpload, rowsToInsert, client, tableToInsertInto, 
             console.log("[FAILURE][UPLOAD] Upload to database has failed");
             request.session.failedUploads++;
             request.session.uploadStatus = `${request.session.failedUploads} upload(s) failed, check your input for possible errors or contact support`;
-            request.session.save(err => { if (err) console.log("[FAILURE][RESOURCE] User data for recent upload has not saved correctly") });
-        } else console.log("[SUCCESS][UPLOAD] User has submitted upload to database");
+            request.session.save(err => { if (err) console.log("[FAILURE][RESOURCE] User data for recent upload has not saved correctly\r\n") });
+        } else console.log("[SUCCESS][UPLOAD] User has submitted upload to database\r\n");
     })
 }
 
@@ -48,14 +48,14 @@ exports.uploadToDirectory = (fileLocation, fs) => {
         let foldersToCreate = "";
         for (let folder = 0; folder < arrayOfFolders[pathOfFile].length - 1; folder++) foldersToCreate += `\\${arrayOfFolders[pathOfFile][folder]}`;
         fs.mkdir(`C:\\marking-centre\\public\\files${foldersToCreate}`, { recursive: true }, error => {
-            if (error) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
+            if (error) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed\r\n");
             else {
                 fs.readFile(readFileLocation[pathOfFile - 1], (err, data) => {
-                    if (err) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
+                    if (err) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed\r\n");
                     else {
                         fs.writeFile(`C:\\marking-centre\\public\\files\\${filePathToSave[0]}`, data, e => {
-                            if (e) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed");
-                            else console.log("[SUCCESS][UPLOAD] File has been copied to correct location");
+                            if (e) console.log("[FAILURE][UPLOAD] Copying uploaded file has failed\r\n");
+                            else console.log("[SUCCESS][UPLOAD] File has been copied to correct location\r\n");
                         });
                     }
                 });

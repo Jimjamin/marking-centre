@@ -15,8 +15,8 @@ exports.openRoute = (app, path) => {
         if (request.session.uploadSession) request.session.uploadSession = "";
         request.session.examData = "";
         result.sendFile(path.join(__dirname, '../../public/pages/', 'index.html'), error => {
-            if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'");
-            else console.log("[SUCCESS][RESOURCE] User has received 'index.html'");
+            if (error) console.log("[FAILURE][RESOURCE] User has not received 'index.html'\r\n");
+            else console.log("[SUCCESS][RESOURCE] User has received 'index.html'\r\n");
         });
     });
 }
@@ -38,7 +38,7 @@ exports.validateCriteria = (app, url, client) => {
         } else {
             result.send({ message: request.session.uploadStatus });
             request.session.uploadStatus = "";
-            request.session.save(error => { if (error) console.log("[FAILURE][UPLOAD] Unable to track number of failed uploads") });
+            request.session.save(error => { if (error) console.log("[FAILURE][UPLOAD] Unable to track number of failed uploads\r\n") });
         }
     });
 }
