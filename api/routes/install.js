@@ -12,7 +12,7 @@ exports.displayInstall = (app, path) => {
 
 exports.downloadFile = app => {
     app.get('/install/download', (request, result) => {
-        result.download(`${__dirname}../../exec/install.exe`, 'install.exe', error => {
+        result.download(`${__dirname}/../../exec/install.exe`, 'install.exe', error => {
             if (error) console.log("[FAILURE][RESOURCE] Could not download installation file\r\n");
             else console.log("[SUCCESS][RESOURCE] Installation file has been downloaded\r\n");
         });
