@@ -4,4 +4,4 @@ public/files/
 __tests__/
 coverage/
 logs/
-exec/install.exe
+public/exec/install.exe
